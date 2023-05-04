@@ -1,18 +1,28 @@
 
-<button mat-icon-button style="float: right; margin: 5px">
-  <mat-icon matDialogClose>close</mat-icon>
-</button>
-<mat-dialog-content>
-  <header><h1>Login</h1></header>
-  <p><mat-form-field>
-    <input matInput placeholder="example@example.com">
-    <mat-icon matSuffix>person</mat-icon>
-  </mat-form-field></p>
-  <p><mat-form-field>
-    <input matInput placeholder="password">
-    <mat-icon matSuffix>lock</mat-icon>
-  </mat-form-field></p>
-</mat-dialog-content>
-<mat-dialog-actions align="end">
-  <button mat-raised-button color="primary">Login</button>
-</mat-dialog-actions>
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <button mat-icon-button style="float: right; margin: 5px">
+    <mat-icon matDialogClose>close</mat-icon>
+  </button>
+  <mat-dialog-content>
+    <header><h1>Login</h1></header>
+    <p><mat-form-field>
+      <input
+        matInput placeholder="example@example.com"
+        type="email"
+        id="email"
+        formControlName="email">
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field></p>
+    <p><mat-form-field>
+      <input
+        matInput placeholder="password"
+        type="password"
+        id="password"
+        formControlName="password">
+      <mat-icon matSuffix>lock</mat-icon>
+    </mat-form-field></p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-raised-button color="primary">Login</button>
+  </mat-dialog-actions>
+</form>

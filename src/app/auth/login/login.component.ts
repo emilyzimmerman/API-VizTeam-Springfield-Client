@@ -16,4 +16,11 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
+
+  onSubmit() {
+    const loginUser = this.loginForm.value;
+    this.authService.login(loginUser).subscribe((res: any) => {
+      console.log(res);
+    });
+  }
 }
