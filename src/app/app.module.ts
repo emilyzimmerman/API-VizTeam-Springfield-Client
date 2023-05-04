@@ -18,14 +18,19 @@ import { MatFormFieldModule } from '@angular/material/form-field'
     SignupComponent,
     SignupModalComponent
   ],
+import { MatToolbarModule } from '@angular/material/toolbar';
+
+@NgModule({
+  declarations: [AppComponent, NavbarComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
     MatFormFieldModule
+    MatToolbarModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
