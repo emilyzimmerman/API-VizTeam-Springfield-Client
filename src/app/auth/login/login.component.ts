@@ -8,6 +8,8 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  buttonDisabled = false;
+
   loginForm = new FormGroup({
     email: new FormControl(''),
     password: new FormControl(''),
