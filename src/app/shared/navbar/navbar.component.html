@@ -1,9 +1,11 @@
 <mat-toolbar>
   <img src="assets/images/vizient-logo-registered.svg" alt="" style="border-right:1px solid #cc3e00;padding-right: 5px;">
   <span style="color:white; margin-left: 2%;">VizTeams</span>
-  <span class="username" style="color:white">Username</span>
+  <span class="username" style="color:white" *ngIf="!!currentUser">Username</span>
 
-  <mat-dialog-actions>
-    <button mat-raised-button color="primary" (click)="openForm()">Login</button>
-  </mat-dialog-actions>
+  <div class="login" *ngIf="!currentUser">
+    <mat-dialog-actions>
+      <button mat-raised-button color="primary" (click)="openForm()">Login</button>
+    </mat-dialog-actions>
+  </div>
 </mat-toolbar>
