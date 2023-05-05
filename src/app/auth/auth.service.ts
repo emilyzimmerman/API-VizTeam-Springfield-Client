@@ -38,6 +38,25 @@ export class AuthService {
       });
     //send request to get user info
   }
+
+  logout() {
+    const token = this.getToken();
+
+    //send request to get rid of token to logout
+    this.http
+      .delete('http://localhost:3000/api/v1/users/logout', {
+        headers: {
+          Authorization: `Bearer ${token.value}`,
+        },
+      })
+      .subscribe((res: any) => {
+        if (res.success) {
+          this.removeToken();
+          this.userService.setCurrentUser(null);
+        }
+      });
+  }
+
   //get token --> have to parse from JSON to typescript
   getToken() {
     return JSON.parse(localStorage.getItem('token'));
