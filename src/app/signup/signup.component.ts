@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormGroup, FormControl} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { SignupModalComponent } from '../signup-modal/signup-modal.component';
 import { MatSnackBar } from '@angular/material/snack-bar'
 
 @Component({
@@ -12,6 +11,10 @@ import { MatSnackBar } from '@angular/material/snack-bar'
 export class SignupComponent implements OnInit {
   email = '';
   password = '';
+  signupForm = new FormGroup({
+    email: new FormControl(''),
+    password: new FormControl('')
+  })
   // email: string = '';
   // password: string = '';
 
@@ -24,7 +27,7 @@ export class SignupComponent implements OnInit {
 
   // openSignupDialog method creates a new instance of SignupModalComponent & opens it using MatDialog
   openSignupDialog() {
-    const dialogRef = this.dialog.open(SignupModalComponent, {
+    const dialogRef = this.dialog.open(SignupComponent, {
       width: '350px',
       data: {}
     });
@@ -36,12 +39,12 @@ export class SignupComponent implements OnInit {
   }
 
   // onSubmit handles form submission & displays a snackBar message when the form is valid
-  onSubmit(form: NgForm) {
-    if (form.valid) {
+  onSubmit() {
+    if (this.signupForm.valid) {
       // handle form submission
+      console.log(this.signupForm.value)
       this.snackBar.open('Thanks for signing up!', '', { duration: 3000});
     }
   }
-
 
 }

@@ -1,12 +1,12 @@
-<form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
+<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
-    <input matInput placeholder="Email" type="email" name="email" [(ngModel)]="email" required>
-    <!-- <mat-error *ngIf="signupForm.controls.email.invalid && signupForm.controls.email.touched">Please enter a valid email.</mat-error> -->
+    <input matInput placeholder="Email" type="email" name="email" formControlName="email" required>
+    <mat-error *ngIf="signupForm.controls['email'].invalid && signupForm.controls['email'].touched">Please enter a valid email.</mat-error>
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Password" type="password" name="password" [(ngModel)]="password" required>
-    <!-- <mat-error *ngIf="signupForm.controls.password.invalid && signupForm.controls.password.touched">Please enter a password.</mat-error> -->
+    <input matInput placeholder="Password" type="password" name="password" formControlName="password" required>
+    <mat-error *ngIf="signupForm.controls['password'].invalid && signupForm.controls['password'].touched">Please enter a password.</mat-error>
   </mat-form-field>
 
   <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid">Submit</button>

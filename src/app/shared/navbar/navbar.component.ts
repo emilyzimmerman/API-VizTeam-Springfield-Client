@@ -3,6 +3,7 @@ import { LoginComponent } from 'src/app/auth/login/login.component';
 import { MatDialog } from '@angular/material/dialog';
 import { UserService } from 'src/app/auth/user.service';
 import { User } from '../models/user.model';
+import { SignupComponent } from 'src/app/signup/signup.component';
 
 @Component({
   selector: 'app-navbar',
@@ -24,4 +25,17 @@ export class NavbarComponent implements OnInit {
       width: '350px',
     });
   }
+
+  openSignupDialog() {
+    const dialogRef = this.matDialog.open(SignupComponent, {
+      width: '350px',
+      data: {}
+    });
+
+    // subscribe to afterClosed method of the dialog reference to get the results when dialog is closed
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`)
+    });
+  }
+
 }
