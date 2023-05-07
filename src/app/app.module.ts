@@ -17,6 +17,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { HomeComponent } from './home/home.component';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, LoginComponent, HomeComponent],
@@ -31,6 +32,7 @@ import { HomeComponent } from './home/home.component';
     MatIconModule,
     MatInputModule,
     MatDialogModule,
+    MatCardModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
