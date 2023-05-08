@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserService } from 'src/app/auth/user.service';
 import { User } from '../models/user.model';
 import { SignupComponent } from 'src/app/signup/signup.component';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +13,11 @@ import { SignupComponent } from 'src/app/signup/signup.component';
 })
 export class NavbarComponent implements OnInit {
   currentUser: User = null;
-  constructor(private matDialog: MatDialog, private userService: UserService) {}
+  constructor(
+    private matDialog: MatDialog,
+    private userService: UserService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.userService.currentUserSubject.subscribe((user: User) => {
@@ -38,4 +43,8 @@ export class NavbarComponent implements OnInit {
     });
   }
 
+
+  onLogout() {
+    this.authService.logout();
+  }
 }
