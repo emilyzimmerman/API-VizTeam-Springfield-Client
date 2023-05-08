@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl} from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -11,16 +12,29 @@ import { MatSnackBar } from '@angular/material/snack-bar'
 export class SignupComponent implements OnInit {
   email = '';
   password = '';
+
   signupForm = new FormGroup({
     email: new FormControl(''),
-    password: new FormControl('')
+    phone: new FormControl(''),
+    first_name: new FormControl(''),
+    last_name: new FormControl(''),
+    password: new FormControl(''),
+    username: new FormControl(''),
+    password_confirmation: new FormControl('')
   })
+
+
   // email: string = '';
   // password: string = '';
 
   // inject MatDialog to open dialog
   // inject SnackBar to show a message when the form is submitted successfully
-  constructor(private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private authService: AuthService,
+    private dialogRef: MatDialogRef<SignupComponent>
+    ) { }
 
   ngOnInit(): void {
   }
@@ -40,11 +54,23 @@ export class SignupComponent implements OnInit {
 
   // onSubmit handles form submission & displays a snackBar message when the form is valid
   onSubmit() {
-    if (this.signupForm.valid) {
-      // handle form submission
-      console.log(this.signupForm.value)
+    const user = this.signupForm.value;
+
+    this.authService.signupForm(user).subscribe((res:any)=>{
+      console.log(res)
+
+      // show a success message
       this.snackBar.open('Thanks for signing up!', '', { duration: 3000});
-    }
+
+      // close the dialog
+      this.dialogRef.close();
+    })
+
+    // if (this.signupForm.valid) {
+    //   // handle form submission
+    //   console.log(this.signupForm.value)
+    //   this.snackBar.open('Thanks for signing up!', '', { duration: 3000});
+    // }
   }
 
 }
