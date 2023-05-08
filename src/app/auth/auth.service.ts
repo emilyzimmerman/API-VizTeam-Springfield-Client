@@ -2,17 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../shared/models/user.model';
 import { UserService } from './user.service';
+import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  showHome = false;
-
+  public loggedInSubject = new BehaviorSubject<boolean>(false);
   constructor(private http: HttpClient, private userService: UserService) {}
-
-  login(user: any) {
-    return this.http.post('http://localhost:3000/api/v1/users/login', user);
-  }
 
   autoSignIn() {
     //get token from browser (already declared by getToken())
@@ -30,13 +26,21 @@ export class AuthService {
       })
       .subscribe((res: any) => {
         if (res.success) {
+          this.loggedInSubject.next(true);
           console.log(res.payload.user);
           this.userService.setCurrentUser(res.payload.user);
           //set showHome to true so it shows home component
-          this.showHome = true;
         }
       });
     //send request to get user info
+  }
+
+  isLoggedIn(): Observable<boolean> {
+    return this.loggedInSubject.asObservable();
+  }
+
+  login(user: any) {
+    return this.http.post('http://localhost:3000/api/v1/users/login', user);
   }
 
   logout() {
@@ -55,6 +59,7 @@ export class AuthService {
           this.userService.setCurrentUser(null);
         }
       });
+    this.loggedInSubject.next(false);
   }
 
   //get token --> have to parse from JSON to typescript

@@ -7,7 +7,12 @@ import { AuthService } from './auth/auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private authService: AuthService) {}
+  loggedIn = false;
+  constructor(private authService: AuthService) {
+    this.authService.loggedInSubject.subscribe((loggedIn: boolean) => {
+      this.loggedIn = loggedIn;
+    });
+  }
 
   ngOnInit(): void {
     this.authService.autoSignIn();
