@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { SignupModalComponent } from '../signup-modal/signup-modal.component';
+import { FormGroup, FormControl} from '@angular/forms';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -12,19 +12,34 @@ import { MatSnackBar } from '@angular/material/snack-bar'
 export class SignupComponent implements OnInit {
   email = '';
   password = '';
-  // email: string = '';
-  // password: string = '';
+
+  signupForm = new FormGroup({
+    email: new FormControl(''),
+    phone: new FormControl(''),
+    first_name: new FormControl(''),
+    last_name: new FormControl(''),
+    password: new FormControl(''),
+    username: new FormControl(''),
+    password_confirmation: new FormControl('')
+  })
+
+  errorMessage = '';
 
   // inject MatDialog to open dialog
   // inject SnackBar to show a message when the form is submitted successfully
-  constructor(private dialog: MatDialog, private snackBar: MatSnackBar) { }
+  constructor(
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private authService: AuthService,
+    private dialogRef: MatDialogRef<SignupComponent>
+    ) { }
 
   ngOnInit(): void {
   }
 
   // openSignupDialog method creates a new instance of SignupModalComponent & opens it using MatDialog
   openSignupDialog() {
-    const dialogRef = this.dialog.open(SignupModalComponent, {
+    const dialogRef = this.dialog.open(SignupComponent, {
       width: '350px',
       data: {}
     });
@@ -36,11 +51,45 @@ export class SignupComponent implements OnInit {
   }
 
   // onSubmit handles form submission & displays a snackBar message when the form is valid
-  onSubmit(form: NgForm) {
-    if (form.valid) {
-      // handle form submission
-      this.snackBar.open('Thanks for signing up!', '', { duration: 3000});
-    }
+  // onSubmit() {
+  //   const user = this.signupForm.value;
+
+  //   this.authService.signupForm(user).subscribe((res:any)=>{
+  //     console.log(res)
+
+  //     // close the dialog
+  //     this.dialogRef.close(true);
+
+  //     // show a success message
+  //     this.snackBar.open('Thanks for signing up!', '', { duration: 3000});
+
+  //     (error: any) => {
+  //       console.log(error);
+  //       // show an error message
+  //       this.snackBar.open('Error signing up. Please try again.', '', { duration: 3000});
+  //     }
+  //   })
+  // }
+
+  onSubmit() {
+    const user = this.signupForm.value;
+
+    this.authService.signupForm(user).subscribe(
+      (res:any) => {
+        console.log(res);
+
+        // close the dialog
+        this.dialogRef.close(true);
+
+        // show a success message
+        this.snackBar.open('Thanks for signing up!', '', { duration: 3000});
+      },
+      (error: any) => {
+        console.log(error);
+        // show an error message
+        this.errorMessage = 'Error signing up. Please try again.';
+      }
+    );
   }
 
 
