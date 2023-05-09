@@ -28,11 +28,12 @@
     <input matInput placeholder="Password Confirmation" type="password_confirmation" name="password_confirmation" formControlName="password_confirmation" required>
     <mat-error *ngIf="signupForm.controls['password_confirmation'].invalid && signupForm.controls['password_confirmation'].touched">Please enter your password confirmation.</mat-error>
   </mat-form-field>
-  
+
   <mat-form-field>
     <input matInput placeholder="Username" type="text" name="username" formControlName="username" required>
     <mat-error *ngIf="signupForm.controls['username'].invalid && signupForm.controls['username'].touched">Please enter a username.</mat-error>
   </mat-form-field>
 
+  <div *ngIf="errorMessage" class="errorMessage">{{ errorMessage }}</div>
   <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid">Submit</button>
 </form>

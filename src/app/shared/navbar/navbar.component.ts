@@ -39,6 +39,9 @@ export class NavbarComponent implements OnInit {
 
     // subscribe to afterClosed method of the dialog reference to get the results when dialog is closed
     dialogRef.afterClosed().subscribe(result => {
+      if (result){
+        this.openForm()
+      }
       console.log(`Dialog result: ${result}`)
     });
   }

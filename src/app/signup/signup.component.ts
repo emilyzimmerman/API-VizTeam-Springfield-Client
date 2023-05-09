@@ -23,9 +23,7 @@ export class SignupComponent implements OnInit {
     password_confirmation: new FormControl('')
   })
 
-
-  // email: string = '';
-  // password: string = '';
+  errorMessage = '';
 
   // inject MatDialog to open dialog
   // inject SnackBar to show a message when the form is submitted successfully
@@ -53,24 +51,46 @@ export class SignupComponent implements OnInit {
   }
 
   // onSubmit handles form submission & displays a snackBar message when the form is valid
+  // onSubmit() {
+  //   const user = this.signupForm.value;
+
+  //   this.authService.signupForm(user).subscribe((res:any)=>{
+  //     console.log(res)
+
+  //     // close the dialog
+  //     this.dialogRef.close(true);
+
+  //     // show a success message
+  //     this.snackBar.open('Thanks for signing up!', '', { duration: 3000});
+
+  //     (error: any) => {
+  //       console.log(error);
+  //       // show an error message
+  //       this.snackBar.open('Error signing up. Please try again.', '', { duration: 3000});
+  //     }
+  //   })
+  // }
+
   onSubmit() {
     const user = this.signupForm.value;
 
-    this.authService.signupForm(user).subscribe((res:any)=>{
-      console.log(res)
+    this.authService.signupForm(user).subscribe(
+      (res:any) => {
+        console.log(res);
 
-      // show a success message
-      this.snackBar.open('Thanks for signing up!', '', { duration: 3000});
+        // close the dialog
+        this.dialogRef.close(true);
 
-      // close the dialog
-      this.dialogRef.close();
-    })
-
-    // if (this.signupForm.valid) {
-    //   // handle form submission
-    //   console.log(this.signupForm.value)
-    //   this.snackBar.open('Thanks for signing up!', '', { duration: 3000});
-    // }
+        // show a success message
+        this.snackBar.open('Thanks for signing up!', '', { duration: 3000});
+      },
+      (error: any) => {
+        console.log(error);
+        // show an error message
+        this.errorMessage = 'Error signing up. Please try again.';
+      }
+    );
   }
+
 
 }
