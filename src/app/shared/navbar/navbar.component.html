@@ -7,13 +7,13 @@
     *ngIf="!!currentUser">
       Username
       <mat-dialog-actions>
-        <button mat-raised-button color="primary" (click)="onLogout()">Logout</button>
+        <button mat-raised-button (click)="onLogout()" style="background-color: #7d73b5; color:white">Logout</button>
       </mat-dialog-actions>
   </span>
 
   <div class="login" *ngIf="!currentUser">
     <mat-dialog-actions>
-      <button mat-raised-button color="primary" (click)="openForm()">Login</button>
+      <button mat-raised-button (click)="openForm()" style="background-color: #7d73b5; color:white">Login</button>
     </mat-dialog-actions>
   </div>
 </mat-toolbar>

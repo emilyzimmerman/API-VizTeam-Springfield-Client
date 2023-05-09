@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { HomeComponent } from './home/home.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [AppComponent, NavbarComponent, LoginComponent, HomeComponent],
@@ -35,6 +36,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatDialogModule,
     MatCardModule,
     MatExpansionModule,
+    MatProgressBarModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
