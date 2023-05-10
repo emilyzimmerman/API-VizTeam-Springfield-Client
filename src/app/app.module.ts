@@ -20,6 +20,8 @@ import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     MatDialogModule,
     MatCardModule,
+    MatExpansionModule,
+    MatProgressBarModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

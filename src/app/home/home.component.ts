@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
+import { TeamsService } from '../shared/teams.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,17 @@ import { AuthService } from '../auth/auth.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor(private authService: AuthService) {}
-
-  ngOnInit(): void {}
+  displayTeams: any = [];
+  isLoading = true;
+  panelOpenState = false;
+  constructor(private teamsService: TeamsService) {}
+  ngOnInit(): void {
+    this.teamsService.fetchTeams().subscribe((res: any) => {
+      console.log(res.payload);
+      if (res.success) {
+        this.displayTeams = res.payload.teams;
+        this.isLoading = false;
+      }
+    });
+  }
 }
