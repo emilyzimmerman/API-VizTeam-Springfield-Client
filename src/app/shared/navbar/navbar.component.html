@@ -1,4 +1,4 @@
-<mat-toolbar>
+<mat-toolbar >
   <img src="assets/images/vizient-logo-registered.svg" alt="" style="border-right:1px solid #cc3e00;padding-right: 5px;">
   <span style="color:white; margin-left: 2%;">VizTeams</span>
   <span
@@ -13,7 +13,7 @@
 
   <div class="login" *ngIf="!currentUser">
     <mat-dialog-actions>
-      <button mat-flat-button (click)="openForm()" style="background-color: #7d73b5; color:white;" [disableRipple]="true">Login</button>
+      <button mat-flat-button (click)="openForm()" style="background-color: #7d73b5; color:white;" class="no-ripple" matRippleDisabled>Login</button>
     </mat-dialog-actions>
   </div>
 </mat-toolbar>

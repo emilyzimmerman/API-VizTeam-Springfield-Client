@@ -14,8 +14,12 @@ img {
   margin-left: auto;
 }
 
-.mat-flat-button .mat-button-ripple {
-  display: none;
+.mat-button, .mat-icon-button, .mat-raised-button, .mat-icon-button, .mat-fab, .mat-mini-fab {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+  pointer-events: none;
 }
 
-
+.no-ripple {
+  pointer-events: auto;
+}
