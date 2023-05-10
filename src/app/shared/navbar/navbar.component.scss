@@ -14,6 +14,7 @@ img {
   margin-left: auto;
 }
 
+
 .mat-button, .mat-icon-button, .mat-raised-button, .mat-icon-button, .mat-fab, .mat-mini-fab {
   -webkit-tap-highlight-color: transparent;
   -webkit-tap-highlight-color: transparent;
@@ -22,4 +23,8 @@ img {
 
 .no-ripple {
   pointer-events: auto;
+
+.signup-button {
+  background-color: #7d73b5;
+
 }

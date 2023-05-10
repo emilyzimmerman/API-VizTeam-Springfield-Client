@@ -13,7 +13,11 @@
 
   <div class="login" *ngIf="!currentUser">
     <mat-dialog-actions>
+
       <button mat-flat-button (click)="openForm()" style="background-color: #7d73b5; color:white;" class="no-ripple" matRippleDisabled>Login</button>
+
+      <button mat-raised-button color="primary" class="signup-button" (click)="openSignupDialog()">Signup</button>
+
     </mat-dialog-actions>
   </div>
 </mat-toolbar>

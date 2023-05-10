@@ -6,6 +6,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
+
+
 export class AuthService {
   public loggedInSubject = new BehaviorSubject<boolean>(false);
   constructor(private http: HttpClient, private userService: UserService) {}
@@ -74,4 +76,9 @@ export class AuthService {
   removeToken() {
     localStorage.removeItem('token');
   }
+
+  signupForm(data: any): Observable<any>{
+    return this.http.post('http://localhost:3000/api/v1/users/create', data)
+  }
+
 }
