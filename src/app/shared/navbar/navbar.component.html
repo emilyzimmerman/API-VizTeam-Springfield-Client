@@ -3,17 +3,17 @@
   <span style="color:white; margin-left: 2%;">VizTeams</span>
   <span
     class="username"
-    style="color:white"
+    style="color:white; display: flex; align-items: center; vertical-align: middle"
     *ngIf="!!currentUser">
-      Username
+      Welcome {{currentUser.first_name}}
       <mat-dialog-actions>
-        <button mat-raised-button (click)="onLogout()" style="background-color: #7d73b5; color:white">Logout</button>
+        <button mat-raised-button (click)="onLogout()" style="background-color: #7d73b5; color:white" [disableRipple]="true">Logout</button>
       </mat-dialog-actions>
   </span>
 
   <div class="login" *ngIf="!currentUser">
     <mat-dialog-actions>
-      <button mat-raised-button (click)="openForm()" style="background-color: #7d73b5; color:white">Login</button>
+      <button mat-flat-button (click)="openForm()" style="background-color: #7d73b5; color:white;" [disableRipple]="true">Login</button>
     </mat-dialog-actions>
   </div>
 </mat-toolbar>

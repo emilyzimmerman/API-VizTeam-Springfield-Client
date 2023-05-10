@@ -5,6 +5,7 @@
   </button>
   <mat-dialog-content>
     <header><h1>Login</h1></header>
+    <h4 style="color: red" *ngIf="error">Invalid credentials. Please try again</h4>
     <p><mat-form-field>
       <input
         matInput placeholder="example@example.com"
