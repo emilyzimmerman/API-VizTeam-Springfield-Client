@@ -17,4 +17,14 @@ export class TeamsService {
       },
     });
   }
+
+  createTeam(team) {
+    const token = this.authService.getToken();
+
+    return this.http.post('http://localhost:3000/api/v1/teams/', team, {
+      headers: {
+        Authorization: `Bearer ${token.value}`,
+      },
+    });
+  }
 }
