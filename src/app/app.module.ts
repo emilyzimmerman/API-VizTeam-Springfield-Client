@@ -22,6 +22,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { AddTeamComponent } from './add-team/add-team.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     LoginComponent,
     HomeComponent,
     SignupComponent,
+    AddTeamComponent,
   ],
 
   imports: [
