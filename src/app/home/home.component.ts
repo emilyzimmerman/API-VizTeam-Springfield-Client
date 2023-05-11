@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
     private matDialog: MatDialog
   ) {}
   ngOnInit(): void {
+    //getting teams
     this.teamsService.fetchTeams().subscribe((res: any) => {
       console.log(res.payload);
       if (res.success) {

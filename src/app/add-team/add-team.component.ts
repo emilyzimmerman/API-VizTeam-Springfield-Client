@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { TeamsService } from '../shared/teams.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-team',
@@ -14,7 +15,10 @@ export class AddTeamComponent implements OnInit {
     name: new FormControl(''),
     description: new FormControl(''),
   });
-  constructor(private teamService: TeamsService) {}
+  constructor(
+    private teamService: TeamsService,
+    private dialogRef: MatDialogRef<AddTeamComponent>
+  ) {}
 
   ngOnInit(): void {}
 
@@ -24,6 +28,7 @@ export class AddTeamComponent implements OnInit {
     this.teamService.createTeam(newTeam).subscribe({
       next: (res: any) => {
         console.log(res);
+        this.dialogRef.close();
       },
       error: (errorRes) => {
         console.error('An error occurred', errorRes);

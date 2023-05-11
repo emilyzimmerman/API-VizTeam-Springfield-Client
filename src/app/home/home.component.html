@@ -1,8 +1,8 @@
 <!--Come Back to-->
 <div  class="noScroll">
-  <div class="row" style="padding: 2%; height: auto;">
-    <div class="col-md-6">
-    <mat-card>
+  <div class="row" style="padding: 2%">
+  <div class="col-md-6">
+    <mat-card style="height: 500px; overflow-y: auto; overflow-x: hidden;">
       <header style="border-bottom: solid black 1px;"><h1>Teams</h1></header>
       <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
       <mat-expansion-panel
@@ -11,13 +11,11 @@
       style="margin-top: 2%;"
       *ngFor="let team of displayTeams">
         <mat-expansion-panel-header>
-        <mat-panel-title>
-        {{team.name}}
-        </mat-panel-title>
+          <mat-panel-title>{{team.name}}</mat-panel-title>
         </mat-expansion-panel-header>
         <p>{{team.description}}</p>
       </mat-expansion-panel>
-      <span class="row" style="border-top: solid grey 1px; margin-top: 250px;">
+      <span class="row" style="border-top: solid grey 1px; margin-top: 5%;">
         <div style="margin-left: 90%;">
           <button mat-icon-button  matTooltip="Add Team" (click)="onAddTeam()">
             <mat-icon matDialogClose>add</mat-icon>
