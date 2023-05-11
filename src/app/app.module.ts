@@ -29,7 +29,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     NavbarComponent,
     LoginComponent,
     HomeComponent,
-    SignupComponent
+    SignupComponent,
   ],
 
   imports: [
@@ -49,7 +49,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
