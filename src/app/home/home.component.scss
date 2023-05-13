@@ -6,4 +6,24 @@ body{
   overflow: hidden;
 }
 
+.no-members-prompt {
+  margin: 0 auto;
+  color: gray;
+  font-weight: bold;
+  text-align: center;
+}
 
+.custom-expansion-panel {
+  ::ng-deep .mat-expansion-panel-content {
+    background-color: #CCCCCC;
+  }
+}
+
+// .custom-expansion-panel .mat-expansion-panel-header {
+//   position: relative;
+// }
+
+// .custom-expansion-panel .no-members-prompt {
+//   position: absolute;
+//   top: -100%;
+// }
