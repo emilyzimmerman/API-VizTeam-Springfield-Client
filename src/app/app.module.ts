@@ -23,6 +23,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { AddTeamComponent } from './add-team/add-team.component';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { MatGridListModule } from '@angular/material/grid-list';
     NavbarComponent,
     LoginComponent,
     HomeComponent,
-    SignupComponent
+    SignupComponent,
+    AddTeamComponent,
   ],
 
   imports: [
@@ -51,7 +54,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
+
     MatGridListModule
+
+
   ],
   providers: [],
   bootstrap: [AppComponent],

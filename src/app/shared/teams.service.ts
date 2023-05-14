@@ -1,11 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
+import { Subject, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TeamsService {
+  createTeamSubject = new Subject<any>();
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   token = this.authService.getToken();
@@ -16,5 +18,24 @@ export class TeamsService {
         Authorization: `Bearer ${this.token.value}`,
       },
     });
+  }
+
+  createTeam(team) {
+    const token = this.authService.getToken();
+
+    return this.http
+      .post('http://localhost:3000/api/v1/teams/', team, {
+        headers: {
+          Authorization: `Bearer ${token.value}`,
+        },
+      })
+      .pipe(
+        tap((res: any) => {
+          if (res.success) {
+            // emit the newly created team to the subscribers of createTeamSubject
+            this.createTeamSubject.next(res.payload.team);
+          }
+        })
+      );
   }
 }
