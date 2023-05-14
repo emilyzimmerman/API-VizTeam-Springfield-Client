@@ -11,6 +11,7 @@ import { AddTeamComponent } from '../add-team/add-team.component';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  selectedTeam: any;
   displayTeams: any = [];
   isLoading = true;
   panelOpenState = false;
@@ -32,6 +33,7 @@ export class HomeComponent implements OnInit {
     //subscribe to get new teams
     this.teamsService.createTeamSubject.subscribe((team: any) => {
       this.displayTeams.push(team);
+      this.selectedTeam = null;
     });
 
     // fake data for teams

@@ -24,6 +24,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AddTeamComponent } from './add-team/add-team.component';
+import { TeamDetailComponent } from './team-detail/team-detail.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { AddTeamComponent } from './add-team/add-team.component';
     HomeComponent,
     SignupComponent,
     AddTeamComponent,
+    TeamDetailComponent,
   ],
 
   imports: [
