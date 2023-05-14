@@ -11,7 +11,6 @@ import { AddTeamComponent } from '../add-team/add-team.component';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-
   displayTeams: any = [];
   isLoading = true;
   panelOpenState = false;
@@ -23,14 +22,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.teamsService.fetchTeams().subscribe((res: any) => {
-     console.log(res.payload);
-     if (res.success) {
-         this.displayTeams = res.payload.teams;
-         this.isLoading = false;
-     }
-      });
+      console.log(res.payload);
+      if (res.success) {
+        // this.displayTeams = res.payload.teams;
+        this.isLoading = false;
+      }
+    });
 
-      //subscribe to get new teams
+    //subscribe to get new teams
     this.teamsService.createTeamSubject.subscribe((team: any) => {
       this.displayTeams.push(team);
     });
@@ -40,52 +39,65 @@ export class HomeComponent implements OnInit {
       {
         name: 'Team 1',
         members: [
-          { name: 'John Doe', pictureUrl: 'assets/images/default-picture.png'},
-          { name: 'Jane Smith', pictureUrl: 'assets/images/default-picture.png'},
-          { name: 'Mike Johnson', pictureUrl: 'assets/images/default-picture.png'},
-          { name: 'Mac Paul', pictureUrl: 'assets/images/default-picture.png'},
-          { name: 'Silly Sally', pictureUrl: 'assets/images/default-picture.png'},
-          { name: 'Dill Bill', pictureUrl: 'assets/images/default-picture.png'},
-          { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png'},
-          { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png'},
-          { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png'},
-          { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png'},
-          { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png'},
-          { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png'}
+          { name: 'John Doe', pictureUrl: 'assets/images/default-picture.png' },
+          {
+            name: 'Jane Smith',
+            pictureUrl: 'assets/images/default-picture.png',
+          },
+          {
+            name: 'Mike Johnson',
+            pictureUrl: 'assets/images/default-picture.png',
+          },
+          { name: 'Mac Paul', pictureUrl: 'assets/images/default-picture.png' },
+          {
+            name: 'Silly Sally',
+            pictureUrl: 'assets/images/default-picture.png',
+          },
+          {
+            name: 'Dill Bill',
+            pictureUrl: 'assets/images/default-picture.png',
+          },
+          { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png' },
+          { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png' },
+          { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png' },
+          { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png' },
+          { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png' },
+          { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png' },
         ],
-        description: 'This is Team 1 description'
+        description: 'This is Team 1 description',
       },
 
       {
         name: 'Team 2',
         members: [
-          { name: 'Jim Bob', pictureUrl: 'assets/images/default-picture.png'},
-          { name: 'Bob Wilson', pictureUrl: 'assets/images/default-picture.pn'},
-          { name: 'Mike Jones', pictureUrl: 'assets/images/default-picture.png'}
+          { name: 'Jim Bob', pictureUrl: 'assets/images/default-picture.png' },
+          {
+            name: 'Bob Wilson',
+            pictureUrl: 'assets/images/default-picture.pn',
+          },
+          {
+            name: 'Mike Jones',
+            pictureUrl: 'assets/images/default-picture.png',
+          },
         ],
-        description: 'This is Team 2 description'
+        description: 'This is Team 2 description',
       },
 
       {
         name: 'Team 3',
-        members: [
-
-        ],
+        members: [],
       },
 
       {
         name: 'Team 4',
-        members: [
-
-        ],
-      }
-    ]
+        members: [],
+      },
+    ];
   }
 
   onAddTeam() {
     this.matDialog.open(AddTeamComponent, {
       width: '500px',
     });
-
   }
 }
