@@ -1,5 +1,45 @@
 <div class="noScroll">
   <div class="row" style="padding: 2%">
+  <div class="col-md-6">
+    <mat-card style="height: 500px">
+      <header style="border-bottom: solid black 1px;"><h1>Teams</h1></header>
+      <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+      <mat-expansion-panel
+      (opened)="panelOpenState = true"
+      (closed)="panelOpenState = false"
+      style="margin-top: 2%;"
+      class="custom-expansion-panel"
+      *ngFor="let team of displayTeams">
+        <mat-expansion-panel-header>
+        <mat-panel-title>
+        {{team.name}}
+        </mat-panel-title>
+        </mat-expansion-panel-header>
+        <!-- List members of team in expansion panels w/ default avatar pic -->
+        <div class="row" style="border-top: solid black 1px; padding: 10px;">
+          <mat-grid-list cols="12" rowHeight="80" gutterSize="5px">
+          <mat-grid-tile *ngFor="let member of team.members">
+            <img
+              src="{{ member.pictureUrl || 'default-picture.png' }}"
+              alt="Member Picture"
+              style="width: 65px; height: 65px; object-fit: cover; margin: 5px;"
+              [matTooltip]="member.name"
+              matTooltipPosition="above"
+              matTooltipShowDelay="500"
+              matTooltipHideDelay="0"
+            >
+          </mat-grid-tile>
+          </mat-grid-list>
+        </div>
+        <ng-template matExpansionPanelContent="">
+        <div class="content-wrapper">
+        <p *ngIf="team.members.length === 0" class="no-members-prompt">No members on this team.</p>
+        <p>{{team.description}}</p>
+        </div>
+      </ng-template>
+      </mat-expansion-panel>
+    </mat-card>
+  </div>
     <div class="col-md-6">
       <mat-card style="height: 500px; overflow-y: auto; overflow-x: hidden; position: relative;">
         <header style="border-bottom: solid black 1px;"><h1>Teams</h1></header>
