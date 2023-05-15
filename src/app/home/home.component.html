@@ -32,7 +32,7 @@
           </mat-grid-list>
         </div>
 
-            <p *ngIf="team.members.length === 0" class="no-members-prompt">No members on this team.</p>
+            <p  class="no-members-prompt">No members on this team.</p>
             <p>{{team.description}}</p>
           </mat-expansion-panel>
         </div>
@@ -68,7 +68,7 @@
             <p>{{member.name}}</p>
           </mat-grid-tile>
         </mat-grid-list>
-        <div *ngIf="selectedTeam.members.length === 0" class="no-members-prompt">
+        <div class="no-members-prompt">
           No members on this team.
           <p>{{ selectedTeam.description }}</p>
         </div>
@@ -78,7 +78,7 @@
     <mat-action-row style="border-top: solid grey 1px; background-color: white; position: absolute; bottom: 0; width: 100%;">
       <div>
         <button mat-icon-button  matTooltip="Edit Team">
-          <mat-icon matDialogClose style="color: #5E6E78">edit</mat-icon>
+          <mat-icon matDialogClose style="color: #5E6E78" (click)="onEditTeam()">edit</mat-icon>
         </button>
         <button mat-icon-button  matTooltip="Archive Team">
           <mat-icon matDialogClose style="color: #5E6E78">archive</mat-icon>
