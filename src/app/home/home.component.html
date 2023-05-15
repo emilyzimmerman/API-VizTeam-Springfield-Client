@@ -54,23 +54,24 @@
     <header style="border-bottom: solid black 1px;">
       <h1>{{ selectedTeam.name }}</h1>
     </header>
-    <div style="height: 300px; display: flex; align-items: center; ">
+    <div>
       <mat-card-content style="margin: auto">
         <p>{{ selectedTeam.description }}</p>
-        <mat-grid-list cols="12" rowHeight="80" gutterSize="5px">
+        <mat-grid-list cols="2" rowHeight="80" gutterSize="5px" style="width: 100%;" mat-grid-list-align="start">
           <mat-grid-tile *ngFor="let member of selectedTeam.members">
             <img
               src="{{ member.pictureUrl || 'default-picture.png' }}"
               alt="Member Picture"
-              style="width: 65px; height: 65px; object-fit: cover; margin: 5px;"
-              [matTooltip]="member.name"
-              matTooltipPosition="above"
-              matTooltipShowDelay="500"
-              matTooltipHideDelay="0"
+              style="width: 65px; height: 65px; margin: 5px;"
+
             >
-            <p *ngIf="member.length === 0" class="no-members-prompt">No members on this team.</p>
+            <p>{{member.name}}</p>
           </mat-grid-tile>
         </mat-grid-list>
+        <div *ngIf="selectedTeam.members.length === 0" class="no-members-prompt">
+          No members on this team.
+          <p>{{ selectedTeam.description }}</p>
+        </div>
       </mat-card-content>
     </div>
   </mat-card>
@@ -78,5 +79,16 @@
     <div style="height: 300px; display: flex; align-items: center; ">
       <mat-card-content style="margin: auto"><h1>Select a team to view members</h1></mat-card-content>
     </div>
+
+    <mat-action-row style="border-top: solid grey 1px; background-color: white; margin-top: 5%; bottom: 0; width: 100%; ">
+      <div>
+        <button mat-icon-button  matTooltip="Edit Team">
+          <mat-icon matDialogClose style="color: #5E6E78">edit</mat-icon>
+        </button>
+        <button mat-icon-button  matTooltip="Archive Team">
+          <mat-icon matDialogClose style="color: #5E6E78">archive</mat-icon>
+        </button>
+      </div>
+    </mat-action-row>
   </mat-card>
 </div>
