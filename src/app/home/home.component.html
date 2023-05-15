@@ -6,6 +6,7 @@
         <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
         <div style="height: 350px; overflow-y: auto;">
           <mat-expansion-panel
+            class="custom-expansion-panel"
             (opened)="panelOpenState = true"
             (closed)="panelOpenState = false"
             style="margin-top: 2%;"
@@ -29,9 +30,12 @@
           </mat-grid-tile>
           </mat-grid-list>
         </div>
-
             <p *ngIf="team.members.length === 0" class="no-members-prompt">No members on this team.</p>
             <p>{{team.description}}</p>
+            <button mat-icon-button matTooltip="Add Member" (click)="addMemberToTeam(team)">
+              <mat-icon class="person-add-icon">person_add</mat-icon>
+              <span class="team-count">{{ team.members.length }}/12</span>
+            </button>
           </mat-expansion-panel>
         </div>
         <mat-action-row style="border-top: solid grey 1px; background-color: white; margin-top: 5%; position: absolute; bottom: 0; width: 100%; ">
