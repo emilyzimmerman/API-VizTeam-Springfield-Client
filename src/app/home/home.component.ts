@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
   isLoading = true;
   panelOpenState = false;
 
+  // teamCount: number = this.displayTeams.reduce((count: number, team: any) => count + team.members.length, 0);
+
   constructor(
     private teamsService: TeamsService,
     private matDialog: MatDialog
@@ -41,7 +43,9 @@ export class HomeComponent implements OnInit {
       {
         name: 'Team 1',
         members: [
-          { name: 'John Doe', pictureUrl: 'assets/images/default-picture.png' },
+          {
+          name: 'John Doe',
+          pictureUrl: 'assets/images/default-picture.png' },
           {
             name: 'Jane Smith',
             pictureUrl: 'assets/images/default-picture.png',
@@ -50,7 +54,9 @@ export class HomeComponent implements OnInit {
             name: 'Mike Johnson',
             pictureUrl: 'assets/images/default-picture.png',
           },
-          { name: 'Mac Paul', pictureUrl: 'assets/images/default-picture.png' },
+          {
+            name: 'Mac Paul',
+            pictureUrl: 'assets/images/default-picture.png' },
           {
             name: 'Silly Sally',
             pictureUrl: 'assets/images/default-picture.png',
@@ -60,11 +66,11 @@ export class HomeComponent implements OnInit {
             pictureUrl: 'assets/images/default-picture.png',
           },
           { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png' },
-          { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png' },
-          { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png' },
-          { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png' },
-          { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png' },
-          { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png' },
+          // { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png' },
+          // { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png' },
+          // { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png' },
+          // { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png' },
+          // { name: 'Jo Blow', pictureUrl: 'assets/images/default-picture.png' },
         ],
         description: 'This is Team 1 description',
       },
@@ -103,9 +109,27 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  // onAddMember() {
-  //   this.matDialog.open(AddMemberComponent, {
-  //     wdth: '500px',
-  //   });
-  // }
+
+  addMemberToTeam(team: any) {
+    // add member to the team
+    team.members.push({ name: 'New Member', pictureUrl: 'default-picture.png'});
+
+    // increment the team count
+    // this.teamCount++;
+    this.updateTeamCount();
+  }
+
+  removeMemberFromTeam(member: any) {
+    // remove the member from the team
+
+    // decrement the team count
+    this.updateTeamCount();
+  }
+
+  updateTeamCount() {
+    this.displayTeams.forEach((team: any) => {
+      team.teamCount = team.members.length
+    });
+  }
+
 }

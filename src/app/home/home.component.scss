@@ -8,7 +8,8 @@ body{
 
 
 .no-members-prompt {
-  margin: 0 auto;
+  position: absolute;
+  margin-top: 20px;
   color: gray;
   font-weight: bold;
   text-align: center;
@@ -20,13 +21,19 @@ body{
   }
 }
 
-// .custom-expansion-panel .mat-expansion-panel-header {
-//   position: relative;
-// }
+.person-add-icon {
+  color: rgb(69, 90, 100, .87);
+}
 
-// .custom-expansion-panel .no-members-prompt {
-//   position: absolute;
-//   top: -100%;
-// }
+.team-count {
+  vertical-align: middle;
+  color: rgb(69, 90, 100, .87);
+  margin-left: 10px;
+}
 
-
+mat-action-row
+ {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+ }
