@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { TeamsService } from '../shared/teams.service';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatDialog } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { AddTeamComponent } from '../add-team/add-team.component';
 import { EditTeamComponent } from '../edit-team/edit-team.component';
 
@@ -45,9 +45,13 @@ export class HomeComponent implements OnInit {
       width: '500px',
     });
   }
-  onEditTeam() {
+  onEditTeam(team) {
     this.matDialog.open(EditTeamComponent, {
       width: '500px',
+      data: {
+        name: team.name,
+        description: team.description,
+      },
     });
   }
 }

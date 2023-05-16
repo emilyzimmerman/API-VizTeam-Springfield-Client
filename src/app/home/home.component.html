@@ -17,6 +17,7 @@
             </mat-expansion-panel-header>
 <!-- List members of team in expansion panels w/ default avatar pic -->
         <div class="row" style="border-top: solid black 1px; padding: 10px;">
+          <p>{{team.description}}</p>
           <mat-grid-list cols="12" rowHeight="80" gutterSize="5px">
           <mat-grid-tile *ngFor="let member of team.members">
             <img
@@ -33,7 +34,6 @@
         </div>
 
             <p  class="no-members-prompt">No members on this team.</p>
-            <p>{{team.description}}</p>
           </mat-expansion-panel>
         </div>
         <mat-action-row style="border-top: solid grey 1px; background-color: white; margin-top: 5%; position: absolute; bottom: 0; width: 100%; ">
@@ -78,7 +78,7 @@
     <mat-action-row style="border-top: solid grey 1px; background-color: white; position: absolute; bottom: 0; width: 100%;">
       <div>
         <button mat-icon-button  matTooltip="Edit Team">
-          <mat-icon matDialogClose style="color: #5E6E78" (click)="onEditTeam()">edit</mat-icon>
+          <mat-icon matDialogClose style="color: #5E6E78" (click)="onEditTeam(selectedTeam)">edit</mat-icon>
         </button>
         <button mat-icon-button  matTooltip="Archive Team">
           <mat-icon matDialogClose style="color: #5E6E78">archive</mat-icon>
