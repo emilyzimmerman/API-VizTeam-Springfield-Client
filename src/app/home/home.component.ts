@@ -4,6 +4,8 @@ import { TeamsService } from '../shared/teams.service';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTeamComponent } from '../add-team/add-team.component';
+import { AddMemberComponent } from '../add-member/add-member.component';
+
 
 @Component({
   selector: 'app-home',
@@ -100,4 +102,10 @@ export class HomeComponent implements OnInit {
       width: '500px',
     });
   }
+
+  // onAddMember() {
+  //   this.matDialog.open(AddMemberComponent, {
+  //     wdth: '500px',
+  //   });
+  // }
 }
