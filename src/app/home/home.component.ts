@@ -4,6 +4,8 @@ import { TeamsService } from '../shared/teams.service';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialog } from '@angular/material/dialog';
 import { AddTeamComponent } from '../add-team/add-team.component';
+import { AddMemberComponent } from '../add-member/add-member.component';
+
 
 @Component({
   selector: 'app-home',
@@ -107,6 +109,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
+
   addMemberToTeam(team: any) {
     // add member to the team
     team.members.push({ name: 'New Member', pictureUrl: 'default-picture.png'});
@@ -128,4 +131,5 @@ export class HomeComponent implements OnInit {
       team.teamCount = team.members.length
     });
   }
+
 }
