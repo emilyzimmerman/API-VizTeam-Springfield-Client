@@ -31,7 +31,6 @@
           </mat-grid-list>
           <p *ngIf="team.members.length === 0" class="no-members-prompt">No members on this team.</p>
         </div>
-            <p>{{team.description}}</p>
             <mat-action-row>
               <span class="team-count">{{ team.members.length }}/12</span>
               <button mat-icon-button matTooltip="Add Member" (click)="addMemberToTeam(team)">
