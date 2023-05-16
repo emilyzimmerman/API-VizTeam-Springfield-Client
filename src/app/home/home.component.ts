@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   isLoading = true;
   panelOpenState = false;
 
-  teamCount: number = this.displayTeams.reduce((count: number, team: any) => count + team.members.length, 0);
+  // teamCount: number = this.displayTeams.reduce((count: number, team: any) => count + team.members.length, 0);
 
   constructor(
     private teamsService: TeamsService,
@@ -120,12 +120,12 @@ export class HomeComponent implements OnInit {
     // remove the member from the team
 
     // decrement the team count
-    this.teamCount--;
+    this.updateTeamCount();
   }
 
   updateTeamCount() {
     this.displayTeams.forEach((team: any) => {
       team.teamCount = team.members.length
-    })
+    });
   }
 }
