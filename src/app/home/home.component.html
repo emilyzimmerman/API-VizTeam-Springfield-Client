@@ -29,13 +29,15 @@
             >
           </mat-grid-tile>
           </mat-grid-list>
+          <p *ngIf="team.members.length === 0" class="no-members-prompt">No members on this team.</p>
         </div>
-            <p *ngIf="team.members.length === 0" class="no-members-prompt">No members on this team.</p>
             <p>{{team.description}}</p>
-            <button mat-icon-button matTooltip="Add Member" (click)="addMemberToTeam(team)">
-              <mat-icon class="person-add-icon">person_add</mat-icon>
+            <mat-action-row>
               <span class="team-count">{{ team.members.length }}/12</span>
-            </button>
+              <button mat-icon-button matTooltip="Add Member" (click)="addMemberToTeam(team)">
+                <mat-icon class="person-add-icon">person_add</mat-icon>
+              </button>
+            </mat-action-row>
           </mat-expansion-panel>
         </div>
         <mat-action-row style="border-top: solid grey 1px; background-color: white; margin-top: 5%; position: absolute; bottom: 0; width: 100%; ">
