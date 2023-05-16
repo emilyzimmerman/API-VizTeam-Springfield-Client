@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../shared/models/user.model';
 import { UserService } from './user.service';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -10,6 +12,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 export class AuthService {
   public loggedInSubject = new BehaviorSubject<boolean>(false);
+
+  baseApi = environment.backendUrl
+
   constructor(private http: HttpClient, private userService: UserService) {}
 
   autoSignIn() {
@@ -21,7 +26,7 @@ export class AuthService {
     }
 
     this.http
-      .get('http://localhost:3000/api/v1/users/me', {
+      .get(this.baseApi + '/api/v1/users/me', {
         headers: {
           Authorization: `Bearer ${token.value}`,
         },
@@ -42,7 +47,7 @@ export class AuthService {
   }
 
   login(user: any) {
-    return this.http.post('http://localhost:3000/api/v1/users/login', user);
+    return this.http.post(this.baseApi + '/api/v1/users/login', user);
   }
 
   logout() {
@@ -50,7 +55,7 @@ export class AuthService {
 
     //send request to get rid of token to logout
     this.http
-      .delete('http://localhost:3000/api/v1/users/logout', {
+      .delete(this.baseApi + '/api/v1/users/logout', {
         headers: {
           Authorization: `Bearer ${token.value}`,
         },
@@ -78,7 +83,7 @@ export class AuthService {
   }
 
   signupForm(data: any): Observable<any>{
-    return this.http.post('http://localhost:3000/api/v1/users/create', data)
+    return this.http.post(this.baseApi + '/api/v1/users/create', data)
   }
 
 }

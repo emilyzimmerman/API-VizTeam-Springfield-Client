@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth/auth.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
