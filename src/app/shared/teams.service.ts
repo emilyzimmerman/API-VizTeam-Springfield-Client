@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { Subject, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -13,8 +14,10 @@ export class TeamsService {
 
   token = this.authService.getToken();
 
+  baseApi = environment.backendUrl
+
   fetchTeams() {
-    return this.http.get('http://localhost:3000/api/v1/teams/', {
+    return this.http.get(this.baseApi + '/api/v1/teams', {
       headers: {
         Authorization: `Bearer ${this.token.value}`,
       },
@@ -25,7 +28,7 @@ export class TeamsService {
     const token = this.authService.getToken();
 
     return this.http
-      .post('http://localhost:3000/api/v1/teams/', team, {
+      .post(this.baseApi + '/api/v1/teams', team, {
         headers: {
           Authorization: `Bearer ${token.value}`,
         },

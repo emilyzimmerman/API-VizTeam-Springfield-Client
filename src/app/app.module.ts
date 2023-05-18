@@ -24,10 +24,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AddTeamComponent } from './add-team/add-team.component';
+
 import { TeamDetailComponent } from './team-detail/team-detail.component';
 import { EditTeamComponent } from './edit-team/edit-team.component';
 import { DeleteTeamComponent } from './delete-team/delete-team.component';
 
+import { AddMemberComponent } from './add-member/add-member.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { DeleteTeamComponent } from './delete-team/delete-team.component';
     TeamDetailComponent,
     EditTeamComponent,
     DeleteTeamComponent,
+    AddMemberComponent,
   ],
 
   imports: [
@@ -61,9 +64,7 @@ import { DeleteTeamComponent } from './delete-team/delete-team.component';
     HttpClientModule,
     MatSnackBarModule,
 
-    MatGridListModule
-
-
+    MatGridListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

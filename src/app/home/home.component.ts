@@ -6,6 +6,7 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { AddTeamComponent } from '../add-team/add-team.component';
 import { EditTeamComponent } from '../edit-team/edit-team.component';
 import { DeleteTeamComponent } from '../delete-team/delete-team.component';
+import { AddMemberComponent } from '../add-member/add-member.component';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +19,8 @@ export class HomeComponent implements OnInit {
   isLoading = true;
   panelOpenState = false;
   teamService: any;
+
+  // teamCount: number = this.displayTeams.reduce((count: number, team: any) => count + team.members.length, 0);
 
   constructor(
     private teamsService: TeamsService,
@@ -74,6 +77,31 @@ export class HomeComponent implements OnInit {
         description: team.description,
         id: team.id,
       },
+    });
+  }
+
+  addMemberToTeam(team: any) {
+    // add member to the team
+    team.members.push({
+      name: 'New Member',
+      pictureUrl: 'default-picture.png',
+    });
+
+    // increment the team count
+    // this.teamCount++;
+    this.updateTeamCount();
+  }
+
+  removeMemberFromTeam(member: any) {
+    // remove the member from the team
+
+    // decrement the team count
+    this.updateTeamCount();
+  }
+
+  updateTeamCount() {
+    this.displayTeams.forEach((team: any) => {
+      team.teamCount = team.members.length;
     });
   }
 }
