@@ -109,13 +109,7 @@ export class HomeComponent implements OnInit {
     });
   }
 
-<<<<<<< HEAD
-  // onAddMember() {
-  //   this.matDialog.open(AddMemberComponent, {
-  //     wdth: '500px',
-  //   });
-  // }
-=======
+
   addMemberToTeam(team: any) {
     // add member to the team
     team.members.push({ name: 'New Member', pictureUrl: 'default-picture.png'});
@@ -137,5 +131,5 @@ export class HomeComponent implements OnInit {
       team.teamCount = team.members.length
     });
   }
->>>>>>> main
+
 }
