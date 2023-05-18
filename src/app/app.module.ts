@@ -25,6 +25,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AddTeamComponent } from './add-team/add-team.component';
 import { AddMemberComponent } from './add-member/add-member.component';
+import { MatSelectModule } from '@angular/material/select';
+
 
 
 @NgModule({
@@ -57,7 +59,8 @@ import { AddMemberComponent } from './add-member/add-member.component';
     HttpClientModule,
     MatSnackBarModule,
 
-    MatGridListModule
+    MatGridListModule,
+    MatSelectModule
 
 
   ],
