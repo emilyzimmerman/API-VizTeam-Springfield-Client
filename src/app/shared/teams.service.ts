@@ -8,6 +8,7 @@ import { Subject, tap } from 'rxjs';
 })
 export class TeamsService {
   createTeamSubject = new Subject<any>();
+  editTeamSubject = new Subject<any>();
   constructor(private http: HttpClient, private authService: AuthService) {}
 
   token = this.authService.getToken();
@@ -34,6 +35,24 @@ export class TeamsService {
           if (res.success) {
             // emit the newly created team to the subscribers of createTeamSubject
             this.createTeamSubject.next(res.payload.team);
+          }
+        })
+      );
+  }
+
+  onUpdatedTeam(updatedteam, id) {
+    const token = this.authService.getToken();
+
+    return this.http
+      .put(`http://localhost:3000/api/v1/teams/${id}`, updatedteam, {
+        headers: {
+          Authorization: `Bearer ${token.value}`,
+        },
+      })
+      .pipe(
+        tap((res: any) => {
+          if (res.success) {
+            this.editTeamSubject.next(res.payload.team);
           }
         })
       );
