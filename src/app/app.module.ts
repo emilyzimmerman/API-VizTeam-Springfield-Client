@@ -26,6 +26,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { AddTeamComponent } from './add-team/add-team.component';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
 import { EditTeamComponent } from './edit-team/edit-team.component';
+import { DeleteTeamComponent } from './delete-team/delete-team.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { EditTeamComponent } from './edit-team/edit-team.component';
     AddTeamComponent,
     TeamDetailComponent,
     EditTeamComponent,
+    DeleteTeamComponent,
   ],
 
   imports: [

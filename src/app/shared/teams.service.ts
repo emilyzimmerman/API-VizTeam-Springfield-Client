@@ -57,4 +57,13 @@ export class TeamsService {
         })
       );
   }
+
+  deleteTeam(id) {
+    const token = this.authService.getToken();
+    return this.http.delete(`http://localhost:3000/api/v1/teams/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token.value}`,
+      },
+    });
+  }
 }

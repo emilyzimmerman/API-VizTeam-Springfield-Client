@@ -5,6 +5,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { AddTeamComponent } from '../add-team/add-team.component';
 import { EditTeamComponent } from '../edit-team/edit-team.component';
+import { DeleteTeamComponent } from '../delete-team/delete-team.component';
 
 @Component({
   selector: 'app-home',
@@ -56,6 +57,17 @@ export class HomeComponent implements OnInit {
   }
   onEditTeam(team) {
     this.matDialog.open(EditTeamComponent, {
+      width: '500px',
+      data: {
+        name: team.name,
+        description: team.description,
+        id: team.id,
+      },
+    });
+  }
+
+  onDeleteTeam(team) {
+    this.matDialog.open(DeleteTeamComponent, {
       width: '500px',
       data: {
         name: team.name,
