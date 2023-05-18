@@ -10,6 +10,7 @@
         class="form-control"
         name="name"
         formControlName="name"
+        required
 
         >
     </mat-form-field></p>
@@ -20,12 +21,13 @@
         class="form-control"
         name="description"
         formControlName="description"
+        required
 
       >
     </mat-form-field></p>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button mat-button matDialogClose>Cancel</button>    <button type="submit" mat-button>Submit</button>
+    <button mat-button matDialogClose>Cancel</button>    <button type="submit" [disabled]="!teamFormgroup.valid" mat-button>Submit</button>
   </mat-dialog-actions>
 
 </form>

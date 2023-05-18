@@ -33,6 +33,12 @@ export class HomeComponent implements OnInit {
     });
 
     //subscribe to get new teams
+    this.teamsService.createTeamSubject.subscribe((team: any) => {
+      this.displayTeams.push(team);
+      this.selectedTeam = null;
+    });
+
+    // subscribe to update teams
     this.teamsService.editTeamSubject.subscribe((updatedTeam: any) => {
       const index = this.displayTeams.findIndex(
         (team: any) => team.id === updatedTeam.id
@@ -40,13 +46,6 @@ export class HomeComponent implements OnInit {
       if (index !== -1) {
         this.displayTeams[index] = updatedTeam;
       }
-    });
-
-    // subscribe to update teams
-    this.teamService.editTeamSubject.subscribe((updatedTeam: any) => {
-      // Handle the updated team, such as updating the displayTeams array or refreshing the team list
-      console.log('Team updated:', updatedTeam);
-      // Update the displayTeams array or refresh the team list
     });
   }
 
