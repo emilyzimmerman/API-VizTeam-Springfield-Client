@@ -18,7 +18,7 @@
             </mat-expansion-panel-header>
 <!-- List members of team in expansion panels w/ default avatar pic -->
         <div class="row" style="border-top: solid black 1px; padding: 10px;">
-          <p>{{team.description}}</p>
+          <p>{{team.description}} </p>
           <mat-grid-list cols="12" rowHeight="80" gutterSize="5px">
           <mat-grid-tile *ngFor="let member of team.members">
             <img
@@ -32,12 +32,14 @@
             >
           </mat-grid-tile>
           </mat-grid-list>
-          <p *ngIf="team.members.length === 0" class="no-members-prompt">No members on this team.</p>
+          <p  class="no-members-prompt">No members on this team.</p>
         </div>
 
             <p  class="no-members-prompt">No members on this team.</p>
             <mat-action-row>
+              <!--
               <span class="team-count">{{ team.members.length }}/12</span>
+              -->
               <button mat-icon-button matTooltip="Add Member" (click)="addMemberToTeam(team)">
                 <mat-icon class="person-add-icon">person_add</mat-icon>
               </button>
@@ -78,7 +80,6 @@
         </mat-grid-list>
         <div class="no-members-prompt">
           No members on this team.
-          <p>{{ selectedTeam.description }}</p>
         </div>
       </mat-card-content>
     </div>
