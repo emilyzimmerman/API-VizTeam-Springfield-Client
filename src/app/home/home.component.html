@@ -68,22 +68,21 @@
       <mat-card-content style="margin: auto">
         <p>{{ selectedTeam.description }}</p>
         <mat-grid-list cols="2" rowHeight="80" gutterSize="5px" style="width: 100%;" mat-grid-list-align="start">
-          <mat-grid-tile *ngFor="let member of selectedTeam.members">
+          <mat-grid-tile *ngFor="let member of selectedTeam.employees">
             <img
               src="{{ member.pictureUrl || 'default-picture.png' }}"
               alt="Member Picture"
               style="width: 65px; height: 65px; margin: 5px;"
 
             >
-            <p>{{member.name}}</p>
+            <p>{{member.first_name}} {{member.last_name}}</p>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <p class="no-members-prompt" *ngIf="selectedTeam.employees.length === 0">No members on this team.</p>
           </mat-grid-tile>
         </mat-grid-list>
-        <div class="no-members-prompt">
-          No members on this team.
-        </div>
       </mat-card-content>
     </div>
-    <!-- COME BACK TO: FIX POSITION-->
     <mat-action-row style="border-top: solid grey 1px; background-color: white; position: absolute; bottom: 0; width: 100%;">
       <div>
         <button mat-icon-button  matTooltip="Edit Team">
