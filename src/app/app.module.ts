@@ -25,6 +25,11 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AddTeamComponent } from './add-team/add-team.component';
 
+import { AddMemberComponent } from './add-member/add-member.component';
+import { MatSelectModule } from '@angular/material/select';
+
+
+
 import { TeamDetailComponent } from './team-detail/team-detail.component';
 import { EditTeamComponent } from './edit-team/edit-team.component';
 import { DeleteTeamComponent } from './delete-team/delete-team.component';
@@ -65,6 +70,11 @@ import { AddMemberComponent } from './add-member/add-member.component';
     MatSnackBarModule,
 
     MatGridListModule,
+
+    MatSelectModule
+
+
+
   ],
   providers: [],
   bootstrap: [AppComponent],

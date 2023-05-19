@@ -80,17 +80,24 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  addMemberToTeam(team: any) {
-    // add member to the team
-    team.members.push({
-      name: 'New Member',
-      pictureUrl: 'default-picture.png',
+
+ 
+  onAddMember(){
+    this.matDialog.open(AddMemberComponent, {
+      width: '500px',
     });
 
-    // increment the team count
-    // this.teamCount++;
-    this.updateTeamCount();
   }
+
+
+  // addMemberToTeam(team: any) {
+  //   // add member to the team
+  //   team.members.push({ name: 'New Member', pictureUrl: 'default-picture.png'});
+
+  //   // increment the team count
+  //   // this.teamCount++;
+  //   this.updateTeamCount();
+  // }
 
   removeMemberFromTeam(member: any) {
     // remove the member from the team
