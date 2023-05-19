@@ -20,6 +20,9 @@
         <div class="row" style="border-top: solid black 1px; padding: 10px;">
           <p>{{team.description}} </p>
           <mat-grid-list cols="12" rowHeight="80" gutterSize="5px">
+            <mat-grid-tile>
+              <p class="no-members-prompt" *ngIf="team.employees.length === 0">No members on this team.</p>
+            </mat-grid-tile>
           <mat-grid-tile *ngFor="let employee of team.employees">
             <img
               src="{{ employee.pictureUrl || 'default-picture.png' }}"
@@ -32,7 +35,6 @@
             >
           </mat-grid-tile>
           </mat-grid-list>
-          <p  class="no-members-prompt">No members on this team.</p>
         </div>
             <mat-action-row>
               <!--
