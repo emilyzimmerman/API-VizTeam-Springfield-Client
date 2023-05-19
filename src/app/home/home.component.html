@@ -20,12 +20,12 @@
         <div class="row" style="border-top: solid black 1px; padding: 10px;">
           <p>{{team.description}} </p>
           <mat-grid-list cols="12" rowHeight="80" gutterSize="5px">
-          <mat-grid-tile *ngFor="let member of team.members">
+          <mat-grid-tile *ngFor="let employee of team.employees">
             <img
-              src="{{ member.pictureUrl || 'default-picture.png' }}"
+              src="{{ employee.pictureUrl || 'default-picture.png' }}"
               alt="Member Picture"
               style="width: 65px; height: 65px; object-fit: cover; margin: 5px;"
-              [matTooltip]="member.name"
+              [matTooltip]="employee.name"
               matTooltipPosition="above"
               matTooltipShowDelay="500"
               matTooltipHideDelay="0"
@@ -34,8 +34,6 @@
           </mat-grid-list>
           <p  class="no-members-prompt">No members on this team.</p>
         </div>
-
-            <p  class="no-members-prompt">No members on this team.</p>
             <mat-action-row>
               <!--
               <span class="team-count">{{ team.members.length }}/12</span>

@@ -1,6 +1,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { TeamsService } from '../shared/teams.service';
 
 @Component({
@@ -14,7 +14,8 @@ export class EditTeamComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private teamService: TeamsService
+    private teamService: TeamsService,
+    private dialogRef: MatDialogRef<EditTeamComponent>
   ) {}
 
   ngOnInit(): void {
@@ -35,6 +36,7 @@ export class EditTeamComponent implements OnInit {
     this.teamService.onUpdatedTeam(editedTeam, this.data.id).subscribe({
       next: (res: any) => {
         this.teamService.editTeamSubject.next(res.payload.team);
+        this.dialogRef.close();
       },
     });
   }
