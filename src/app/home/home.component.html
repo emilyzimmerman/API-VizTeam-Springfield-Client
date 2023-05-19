@@ -10,37 +10,45 @@
             (opened)="panelOpenState = true"
             (closed)="panelOpenState = false"
             style="margin-top: 2%;"
+            (click)="selectedTeam = team"
+            [class.selected]="selectedTeam == team"
             *ngFor="let team of displayTeams">
             <mat-expansion-panel-header>
               <mat-panel-title>{{team.name}}</mat-panel-title>
             </mat-expansion-panel-header>
 <!-- List members of team in expansion panels w/ default avatar pic -->
         <div class="row" style="border-top: solid black 1px; padding: 10px;">
+          <p>{{team.description}} </p>
           <mat-grid-list cols="12" rowHeight="80" gutterSize="5px">
-          <mat-grid-tile *ngFor="let member of team.members">
+            <mat-grid-tile>
+              <p class="no-members-prompt" *ngIf="team.employees.length === 0">No members on this team.</p>
+            </mat-grid-tile>
+          <mat-grid-tile *ngFor="let employee of team.employees">
             <img
-              src="{{ member.pictureUrl || 'default-picture.png' }}"
+              src="{{ employee.pictureUrl || 'default-picture.png' }}"
               alt="Member Picture"
               style="width: 65px; height: 65px; object-fit: cover; margin: 5px;"
-              [matTooltip]="member.name"
+              [matTooltip]="employee.name"
               matTooltipPosition="above"
               matTooltipShowDelay="500"
               matTooltipHideDelay="0"
             >
           </mat-grid-tile>
           </mat-grid-list>
-          <p *ngIf="team.members.length === 0" class="no-members-prompt">No members on this team.</p>
         </div>
             <mat-action-row>
+              <!--
               <span class="team-count">{{ team.members.length }}/12</span>
+
               <button mat-icon-button matTooltip="Add Member" (click)="onAddMember()">
+
                 <mat-icon class="person-add-icon">person_add</mat-icon>
               </button>
             </mat-action-row>
           </mat-expansion-panel>
         </div>
         <mat-action-row style="border-top: solid grey 1px; background-color: white; margin-top: 5%; position: absolute; bottom: 0; width: 100%; ">
-          <div style="margin-left: 90%;">
+          <div style="margin-right: 5px;">
             <button mat-icon-button  matTooltip="Add Team" (click)="onAddTeam()">
               <mat-icon matDialogClose style="color: #5E6E78">add_box</mat-icon>
             </button>
@@ -49,12 +57,49 @@
       </mat-card>
     </div>
 
-    <div class="col-md-6">
-      <mat-card style="height: 450px; margin-top: 5%;">
-        <div style="height: 300px; display: flex; align-items: center; ">
-          <mat-card-content style="margin: auto"><h1>Select a team to view members</h1></mat-card-content>
-        </div>
-      </mat-card>
+
+
+<!-- View specific team panel -->
+<div class="col-md-6">
+  <mat-card *ngIf="selectedTeam" style="height: 450px; margin-top: 5%; position: relative;  overflow-y: auto; overflow-x: hidden;">
+    <header style="border-bottom: solid black 1px;">
+      <h1>{{ selectedTeam.name }}</h1>
+    </header>
+    <div>
+      <mat-card-content style="margin: auto">
+        <p>{{ selectedTeam.description }}</p>
+        <mat-grid-list cols="2" rowHeight="80" gutterSize="5px" style="width: 100%;" mat-grid-list-align="start">
+          <mat-grid-tile *ngFor="let member of selectedTeam.employees">
+            <img
+              src="{{ member.pictureUrl || 'default-picture.png' }}"
+              alt="Member Picture"
+              style="width: 65px; height: 65px; margin: 5px;"
+
+            >
+            <p>{{member.first_name}} {{member.last_name}}</p>
+          </mat-grid-tile>
+          <mat-grid-tile>
+            <p class="no-members-prompt" *ngIf="selectedTeam.employees.length === 0">No members on this team.</p>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-card-content>
     </div>
-  </div>
+    <mat-action-row style="border-top: solid grey 1px; background-color: white; position: absolute; bottom: 0; width: 100%;">
+      <div>
+        <button mat-icon-button  matTooltip="Edit Team">
+          <mat-icon matDialogClose style="color: #5E6E78" (click)="onEditTeam(selectedTeam)">edit</mat-icon>
+        </button>
+        <button mat-icon-button  matTooltip="Archive Team">
+          <mat-icon matDialogClose style="color: #5E6E78" (click)="onDeleteTeam(selectedTeam)">archive</mat-icon>
+        </button>
+      </div>
+    </mat-action-row>
+  </mat-card>
+
+  <!--Show if there are no teams-->
+  <mat-card *ngIf="!selectedTeam" style="height: 450px; margin-top: 5%;">
+    <div style="height: 300px; display: flex; align-items: center; ">
+      <mat-card-content style="margin: auto"><h1>Select a team to view members</h1></mat-card-content>
+    </div>
+  </mat-card>
 </div>
