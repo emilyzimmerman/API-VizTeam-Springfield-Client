@@ -4,6 +4,7 @@ import { MemberService } from './member.service';
 
 describe('MemberService', () => {
   let service: MemberService;
+
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(MemberService);
