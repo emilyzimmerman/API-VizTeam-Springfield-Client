@@ -65,20 +65,28 @@
         <h1 *ngIf="selectedEmployee">{{selectedTeam.name}} > {{selectedEmployee.first_name}} {{selectedEmployee.last_name}}</h1>
     </header>
     <div>
-      <mat-card-content style="margin: auto">
-        <p  *ngIf="selectedTeam && !selectedEmployee">{{ selectedTeam.description }}</p>
+      <mat-card-content style="margin: auto"  *ngIf="selectedTeam && !selectedEmployee">
+        <p>{{ selectedTeam.description }}</p>
         <p class="no-members-prompt" *ngIf="selectedTeam.employees.length === 0">No members on this team.</p>
-        <mat-grid-list cols="2" rowHeight="80" gutterSize="5px" style="width: 100%;" mat-grid-list-align="start" *ngIf="selectedTeam && !selectedEmployee">
+        <mat-grid-list cols="2" rowHeight="80" gutterSize="5px" style="width: 100%;" mat-grid-list-align="start">
           <mat-grid-tile *ngFor="let member of selectedTeam.employees">
             <img
               src="{{ member.pictureUrl || 'default-picture.png' }}"
               alt="Member Picture"
               style="width: 65px; height: 65px; margin: 5px;"
-
             >
-            <p *ngIf="selectedTeam && !selectedEmployee">{{member.first_name}} {{member.last_name}}</p>
+            <p>{{member.first_name}} {{member.last_name}}</p>
           </mat-grid-tile>
         </mat-grid-list>
+      </mat-card-content>
+      <mat-card-content *ngIf="selectedEmployee">
+        <img
+        src="{{ selectedEmployee.pictureUrl || 'default-picture.png' }}"
+        alt="Member Picture"
+        style="width: 65px; height: 65px; margin: 5px;"
+        >
+        <p>{{selectedEmployee.first_name}} {{selectedEmployee.last_name}}</p>
+        <p>{{selectedEmployee.job_id}}</p>
       </mat-card-content>
     </div>
     <mat-action-row style="border-top: solid grey 1px; background-color: white; position: absolute; bottom: 0; width: 100%;">
@@ -88,6 +96,14 @@
         </button>
         <button mat-icon-button  matTooltip="Archive Team">
           <mat-icon matDialogClose style="color: #5E6E78" (click)="onDeleteTeam(selectedTeam)" (teamDeleted)="handleTeamDeleted">archive</mat-icon>
+        </button>
+      </div>
+      <div *ngIf="selectedEmployee">
+        <button mat-icon-button  matTooltip="Edit {{selectedEmployee.first_name}}">
+          <mat-icon matDialogClose style="color: #5E6E78">edit</mat-icon>
+        </button>
+        <button mat-icon-button  matTooltip="Archive {{selectedEmployee.first_name}}">
+          <mat-icon matDialogClose style="color: #5E6E78">archive</mat-icon>
         </button>
       </div>
     </mat-action-row>

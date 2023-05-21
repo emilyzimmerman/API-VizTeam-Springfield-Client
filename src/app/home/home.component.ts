@@ -52,6 +52,8 @@ export class HomeComponent implements OnInit {
         this.displayTeams[index] = updatedTeam;
       }
     });
+
+    console.log('DISPLAY TEAM:', this.displayTeams);
   }
 
   onAddTeam() {
@@ -124,9 +126,5 @@ export class HomeComponent implements OnInit {
     this.displayTeams.forEach((team: any) => {
       team.teamCount = team.members.length;
     });
-  }
-
-  goBack() {
-    console.log('click works');
   }
 }
