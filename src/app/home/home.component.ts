@@ -15,6 +15,7 @@ import { AddMemberComponent } from '../add-member/add-member.component';
 })
 export class HomeComponent implements OnInit {
   selectedTeam: any;
+  selectedEmployee: any;
   displayTeams: any = [];
   isLoading = true;
   panelOpenState = false;
@@ -51,6 +52,8 @@ export class HomeComponent implements OnInit {
         this.displayTeams[index] = updatedTeam;
       }
     });
+
+    console.log('DISPLAY TEAM:', this.displayTeams);
   }
 
   onAddTeam() {
