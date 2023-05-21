@@ -25,7 +25,7 @@
               src="{{ employee.pictureUrl || 'default-picture.png' }}"
               alt="Member Picture"
               style="width: 65px; height: 65px; object-fit: cover; margin: 5px;"
-              [matTooltip]="employee.name"
+              matTooltip={{employee.first_name}}
               matTooltipPosition="above"
               matTooltipShowDelay="500"
               matTooltipHideDelay="0"
