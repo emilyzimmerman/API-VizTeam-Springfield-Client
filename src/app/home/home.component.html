@@ -83,7 +83,7 @@
           <mat-icon matDialogClose style="color: #5E6E78" (click)="onEditTeam(selectedTeam)">edit</mat-icon>
         </button>
         <button mat-icon-button  matTooltip="Archive Team">
-          <mat-icon matDialogClose style="color: #5E6E78" (click)="onDeleteTeam(selectedTeam)">archive</mat-icon>
+          <mat-icon matDialogClose style="color: #5E6E78" (click)="onDeleteTeam(selectedTeam)" (teamDeleted)="handleTeamDeleted">archive</mat-icon>
         </button>
       </div>
     </mat-action-row>

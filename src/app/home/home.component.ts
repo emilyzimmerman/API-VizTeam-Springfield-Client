@@ -70,25 +70,38 @@ export class HomeComponent implements OnInit {
   }
 
   onDeleteTeam(team) {
-    this.matDialog.open(DeleteTeamComponent, {
-      width: '500px',
-      data: {
-        name: team.name,
-        description: team.description,
-        id: team.id,
-      },
-    });
+    this.matDialog
+      .open(DeleteTeamComponent, {
+        width: '500px',
+        data: {
+          name: team.name,
+          description: team.description,
+          id: team.id,
+        },
+      })
+      .afterClosed()
+      .subscribe((res: any) => {
+        if (res === 'deleted') {
+          this.displayTeams = this.displayTeams.filter(
+            (teamItem) => teamItem.id !== team.id
+          );
+          this.selectedTeam = null;
+        }
+      });
   }
 
+  handleTeamDeleted() {
+    this.displayTeams = this.displayTeams.filter(
+      (t) => t.id !== this.selectedTeam.id
+    );
+    this.selectedTeam = null; // Reset the selected team if it was deleted
+  }
 
- 
-  onAddMember(){
+  onAddMember() {
     this.matDialog.open(AddMemberComponent, {
       width: '500px',
     });
-
   }
-
 
   // addMemberToTeam(team: any) {
   //   // add member to the team
