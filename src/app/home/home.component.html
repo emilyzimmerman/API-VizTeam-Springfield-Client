@@ -25,11 +25,12 @@
               src="{{ employee.pictureUrl || 'default-picture.png' }}"
               alt="Member Picture"
               style="width: 65px; height: 65px; object-fit: cover; margin: 5px;"
-              matTooltip={{employee.first_name}}
+              matTooltip="{{employee.first_name}} {{employee.last_name}}"
               matTooltipPosition="above"
               matTooltipShowDelay="500"
               matTooltipHideDelay="0"
-            >
+              (click)="selectedEmployee = employee"
+              [class.selected]="selectedEmployee == employee">
           </mat-grid-tile>
           </mat-grid-list>
         </div>
@@ -54,17 +55,20 @@
 
 
 
-<!--View specific team panel -->
+<!--View specific team or employee panel -->
 <div class="col-md-6">
-  <mat-card *ngIf="selectedTeam" style="height: 450px; margin-top: 5%; position: relative;  overflow-y: auto; overflow-x: hidden;">
-    <header style="border-bottom: solid black 1px;">
-      <h1>{{ selectedTeam.name }}</h1>
+  <mat-card *ngIf="selectedTeam || selectedEmployee" style="height: 450px; margin-top: 5%; position: relative;  overflow-y: auto; overflow-x: hidden;">
+    <header
+      style="border-bottom: solid black 1px; cursor: pointer;"
+      (click)="selectedEmployee = null">
+        <h1 *ngIf="selectedTeam && !selectedEmployee">{{ selectedTeam.name }}</h1>
+        <h1 *ngIf="selectedEmployee">{{selectedTeam.name}} > {{selectedEmployee.first_name}} {{selectedEmployee.last_name}}</h1>
     </header>
     <div>
       <mat-card-content style="margin: auto">
-        <p>{{ selectedTeam.description }}</p>
+        <p  *ngIf="selectedTeam && !selectedEmployee">{{ selectedTeam.description }}</p>
         <p class="no-members-prompt" *ngIf="selectedTeam.employees.length === 0">No members on this team.</p>
-        <mat-grid-list cols="2" rowHeight="80" gutterSize="5px" style="width: 100%;" mat-grid-list-align="start">
+        <mat-grid-list cols="2" rowHeight="80" gutterSize="5px" style="width: 100%;" mat-grid-list-align="start" *ngIf="selectedTeam && !selectedEmployee">
           <mat-grid-tile *ngFor="let member of selectedTeam.employees">
             <img
               src="{{ member.pictureUrl || 'default-picture.png' }}"
@@ -72,13 +76,13 @@
               style="width: 65px; height: 65px; margin: 5px;"
 
             >
-            <p>{{member.first_name}} {{member.last_name}}</p>
+            <p *ngIf="selectedTeam && !selectedEmployee">{{member.first_name}} {{member.last_name}}</p>
           </mat-grid-tile>
         </mat-grid-list>
       </mat-card-content>
     </div>
     <mat-action-row style="border-top: solid grey 1px; background-color: white; position: absolute; bottom: 0; width: 100%;">
-      <div>
+      <div *ngIf="selectedTeam && !selectedEmployee">
         <button mat-icon-button  matTooltip="Edit Team">
           <mat-icon matDialogClose style="color: #5E6E78" (click)="onEditTeam(selectedTeam)">edit</mat-icon>
         </button>
@@ -96,3 +100,4 @@
     </div>
   </mat-card>
 </div>
+
