@@ -8,11 +8,13 @@ body{
 
 
 .no-members-prompt {
-  position: absolute;
-  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: gray;
   font-weight: bold;
   text-align: center;
+  height: 100%;
 }
 
 .custom-expansion-panel {
@@ -31,6 +33,11 @@ body{
   margin-left: 10px;
 }
 
+img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
 mat-action-row
  {
   display: flex;

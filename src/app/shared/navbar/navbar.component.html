@@ -6,18 +6,15 @@
     style="color:white; display: flex; align-items: center; vertical-align: middle"
     *ngIf="!!currentUser">
       Welcome {{currentUser.first_name}}
-      <mat-dialog-actions>
-        <button mat-raised-button (click)="onLogout()" style="background-color: #7d73b5; color:white">Logout</button>
-      </mat-dialog-actions>
+        <button mat-raised-button (click)="onLogout()" style="background-color: #7d73b5; color:white; margin-left: 10%;">Logout</button>
   </span>
 
   <div class="login" *ngIf="!currentUser">
-    <mat-dialog-actions>
 
-      <button mat-flat-button (click)="openForm()" style="background-color: #7d73b5; color:white;" class="no-ripple" matRippleDisabled>Login</button>
+
+      <button mat-flat-button (click)="openForm()" style="background-color: #7d73b5; color:white; margin-right: 5%;" class="no-ripple" matRippleDisabled>Login</button>
 
       <button mat-raised-button color="primary" class="signup-button" (click)="openSignupDialog()">Signup</button>
 
-    </mat-dialog-actions>
   </div>
 </mat-toolbar>
