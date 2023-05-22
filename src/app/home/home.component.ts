@@ -8,6 +8,7 @@ import { EditTeamComponent } from '../edit-team/edit-team.component';
 import { DeleteTeamComponent } from '../delete-team/delete-team.component';
 import { AddMemberComponent } from '../add-member/add-member.component';
 import { EditEmployeeComponent } from '../edit-employee/edit-employee.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -26,7 +27,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private teamsService: TeamsService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -62,6 +64,7 @@ export class HomeComponent implements OnInit {
       width: '500px',
     });
   }
+
   onEditTeam(team) {
     this.matDialog.open(EditTeamComponent, {
       width: '500px',
@@ -100,15 +103,16 @@ export class HomeComponent implements OnInit {
     );
     this.selectedTeam = null; // Reset the selected team if it was deleted
   }
-  onAddMember(team: any) {
-    if (team.employees.length < 12) {
-      console.log(team.employees.length);
-      this.matDialog.open(AddMemberComponent, {
-        width: '500px',
+
+  onAddMember() {
+    this.matDialog.open(AddMemberComponent, {
+      width: '500px',
+    });
+    this.http
+      .get('https://picsum.photos/v2/list?page=2&limit=100')
+      .subscribe((res: any) => {
+        console.log(res);
       });
-    } else {
-      console.log('Team limit reached. Member cannot be added.');
-    }
   }
 
   // addMemberToTeam(team: any) {
