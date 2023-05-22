@@ -100,11 +100,15 @@ export class HomeComponent implements OnInit {
     );
     this.selectedTeam = null; // Reset the selected team if it was deleted
   }
-
-  onAddMember() {
-    this.matDialog.open(AddMemberComponent, {
-      width: '500px',
-    });
+  onAddMember(team: any) {
+    if (team.employees.length < 12) {
+      console.log(team.employees.length);
+      this.matDialog.open(AddMemberComponent, {
+        width: '500px',
+      });
+    } else {
+      console.log('Team limit reached. Member cannot be added.');
+    }
   }
 
   // addMemberToTeam(team: any) {

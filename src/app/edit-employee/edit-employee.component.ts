@@ -10,6 +10,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class EditEmployeeComponent implements OnInit {
   error: boolean = false;
   employeeFormgroup;
+  jobs: any = [];
+  teams: any = [];
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,

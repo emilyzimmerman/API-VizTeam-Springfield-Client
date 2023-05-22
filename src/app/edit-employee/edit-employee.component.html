@@ -24,16 +24,22 @@
       >
     </mat-form-field></p>
 
-    <p><mat-form-field style="width: 400px;">
-      <input
-        matInput placeholder="Job Title"
-        type="text"
-        class="form-control"
-        name="job"
-        formControlName="job"
-        required
-      >
-    </mat-form-field></p>
+    <p>
+      <mat-form-field >
+        <mat-select style="margin-right: 20px;;" placeholder="Title" formControlName="job" >
+          <mat-option [value]="job" *ngFor="let job of jobs; index as i">
+            {{job.job_titles}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field >
+        <mat-select  style="margin-right: 20px;" placeholder="Team" formControlName="team" >
+          <mat-option [value]="team" *ngFor="let team of teams; index as i">
+            {{team.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+  </p>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button mat-button matDialogClose>Cancel</button>    <button type="submit"  [disabled]="!employeeFormgroup.valid" mat-button>Edit Team</button>
