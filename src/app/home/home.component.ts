@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.teamsService.fetchTeams().subscribe((res: any) => {
-      console.log(res.payload);
+      console.log('RES:', res.payload);
       if (res.success) {
         this.displayTeams = res.payload.teams;
         this.isLoading = false;
