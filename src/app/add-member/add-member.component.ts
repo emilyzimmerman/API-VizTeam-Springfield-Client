@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit, } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
@@ -32,10 +33,7 @@ export class AddMemberComponent implements OnInit {
 
 
 
-  constructor(private memberService: MemberService, private dialogRef: MatDialogRef<AddMemberComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private teamsService: TeamsService, private jobsService: JobsService) { }
-
-
-
+  constructor(private memberService: MemberService, private dialogRef: MatDialogRef<AddMemberComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private teamsService: TeamsService, private jobsService: JobsService, private http:HttpClient) { }
 
   ngOnInit(): void {
 
@@ -62,5 +60,7 @@ export class AddMemberComponent implements OnInit {
   OnSubmit(){
 
   }
+
+
 
 }

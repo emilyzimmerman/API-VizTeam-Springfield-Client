@@ -7,6 +7,7 @@ import { AddTeamComponent } from '../add-team/add-team.component';
 import { EditTeamComponent } from '../edit-team/edit-team.component';
 import { DeleteTeamComponent } from '../delete-team/delete-team.component';
 import { AddMemberComponent } from '../add-member/add-member.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +26,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private teamsService: TeamsService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -61,6 +63,7 @@ export class HomeComponent implements OnInit {
       width: '500px',
     });
   }
+
   onEditTeam(team) {
     this.matDialog.open(EditTeamComponent, {
       width: '500px',
@@ -104,6 +107,10 @@ export class HomeComponent implements OnInit {
     this.matDialog.open(AddMemberComponent, {
       width: '500px',
     });
+    this.http.get('https://picsum.photos/v2/list?page=2&limit=100').subscribe((res:any) =>
+    {
+      console.log(res);
+    })
   }
 
   // addMemberToTeam(team: any) {
