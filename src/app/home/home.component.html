@@ -102,8 +102,11 @@
 
       </div>
       <div *ngIf="selectedEmployee">
-        <button mat-icon-button  matTooltip="Edit {{selectedEmployee.first_name}}">
-          <mat-icon matDialogClose style="color: #5E6E78">edit</mat-icon>
+        <button
+          mat-icon-button
+          matTooltip="Edit {{selectedEmployee.first_name}}"
+          (click)="onEditMember(selectedEmployee)">
+            <mat-icon matDialogClose style="color: #5E6E78">edit</mat-icon>
         </button>
         <button mat-icon-button  matTooltip="Archive {{selectedEmployee.first_name}}">
           <mat-icon matDialogClose style="color: #5E6E78">archive</mat-icon>

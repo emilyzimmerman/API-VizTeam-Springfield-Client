@@ -7,6 +7,7 @@ import { AddTeamComponent } from '../add-team/add-team.component';
 import { EditTeamComponent } from '../edit-team/edit-team.component';
 import { DeleteTeamComponent } from '../delete-team/delete-team.component';
 import { AddMemberComponent } from '../add-member/add-member.component';
+import { EditEmployeeComponent } from '../edit-employee/edit-employee.component';
 
 @Component({
   selector: 'app-home',
@@ -125,6 +126,18 @@ export class HomeComponent implements OnInit {
   updateTeamCount() {
     this.displayTeams.forEach((team: any) => {
       team.teamCount = team.members.length;
+    });
+  }
+
+  onEditMember(employee) {
+    this.matDialog.open(EditEmployeeComponent, {
+      width: '500px',
+      data: {
+        first_name: employee.first_name,
+        last_name: employee.last_name,
+        job: employee.job.job_titles,
+        id: employee.id,
+      },
     });
   }
 }

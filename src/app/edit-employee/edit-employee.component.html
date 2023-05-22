@@ -1,0 +1,43 @@
+
+<form [formGroup]="employeeFormgroup" (ngSubmit)="onSubmit()">
+
+  <mat-dialog-content>
+    <h4 style="color: red" *ngIf="error">Please Enter a team name and description </h4>
+    <p><mat-form-field style="width: 400px;">
+      <input
+        matInput placeholder="First Name"
+        type="text"
+        class="form-control"
+        name="first_name"
+        formControlName="first_name"
+        required
+        >
+    </mat-form-field></p>
+    <p><mat-form-field style="width: 400px;">
+      <input
+        matInput placeholder="Last Name"
+        type="text"
+        class="form-control"
+        name="last_name"
+        formControlName="last_name"
+        required
+      >
+    </mat-form-field></p>
+
+    <p><mat-form-field style="width: 400px;">
+      <input
+        matInput placeholder="Job Title"
+        type="text"
+        class="form-control"
+        name="job"
+        formControlName="job"
+        required
+      >
+    </mat-form-field></p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button matDialogClose>Cancel</button>    <button type="submit"  [disabled]="!employeeFormgroup.valid" mat-button>Edit Team</button>
+  </mat-dialog-actions>
+
+</form>
+

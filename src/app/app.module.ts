@@ -31,6 +31,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { TeamDetailComponent } from './team-detail/team-detail.component';
 import { EditTeamComponent } from './edit-team/edit-team.component';
 import { DeleteTeamComponent } from './delete-team/delete-team.component';
+import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { DeleteTeamComponent } from './delete-team/delete-team.component';
     EditTeamComponent,
     DeleteTeamComponent,
     AddMemberComponent,
+    EditEmployeeComponent,
   ],
 
   imports: [
