@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
@@ -14,13 +15,13 @@ export class AddMemberComponent implements OnInit {
     last_name: new FormControl(''),
   });
 
-  constructor() { }
-
-
+  constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
   }
 
   OnSubmit(){}
+
+  
 
 }
