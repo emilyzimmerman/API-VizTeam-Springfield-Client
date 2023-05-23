@@ -1,8 +1,8 @@
-<form [formGroup]="employeeFormgroup" >
+<form [formGroup]="employeeFormgroup" (ngSubmit)="onSubmit()">
 
   <mat-dialog-content>
     <h4>Add Member Dialog</h4>
-    <mat-form-field style="width: 50%;">
+    <mat-form-field style="padding-right: 10px;">
       <input
         matInput placeholder="First Name"
         type="text"
@@ -13,7 +13,7 @@
         >
     </mat-form-field>
 
-    <mat-form-field style="width: 50%;">
+    <mat-form-field style="padding-right: 10px;">
       <input
         matInput placeholder="Last Name"
         type="text"
@@ -24,18 +24,18 @@
         >
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-select  placeholder="Title" formControlName="job">
-        <mat-option [value]="job" *ngFor="let job of jobs; index as i">
+    <mat-form-field >
+      <mat-select style="margin-right: 20px;;" placeholder="Title" formControlName="job_id" >
+        <mat-option [value]="job.id" *ngFor="let job of jobs; index as i">
           {{job.job_titles}}
         </mat-option>
 
       </mat-select>
     </mat-form-field>
 
-    <mat-form-field>
-      <mat-select  placeholder="Team" formControlName="team" >
-        <mat-option [value]="team" *ngFor="let team of teams; index as i">
+    <mat-form-field >
+      <mat-select  style="margin-right: 20px;" placeholder="Team" formControlName="team_id" >
+        <mat-option [value]="team.id" *ngFor="let team of teams; index as i">
           {{team.name}}
         </mat-option>
       </mat-select>

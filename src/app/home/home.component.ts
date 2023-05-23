@@ -103,6 +103,7 @@ export class HomeComponent implements OnInit {
   onAddMember() {
     this.matDialog.open(AddMemberComponent, {
       width: '500px',
+      
     });
   }
 

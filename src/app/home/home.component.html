@@ -36,10 +36,13 @@
         </div>
             <mat-action-row>
               <span class="team-count">{{ team.employees.length }}/12</span>
-              <button mat-icon-button matTooltip="Add Member" (click)="onAddMember()">
+              <div *ngIf="selectedTeam">
+                <button mat-icon-button matTooltip="Add Member" (click)="onAddMember()">
 
-                <mat-icon class="person-add-icon">person_add</mat-icon>
-              </button>
+                  <mat-icon class="person-add-icon">person_add</mat-icon>
+                </button>
+              </div>
+
             </mat-action-row>
           </mat-expansion-panel>
         </div>
