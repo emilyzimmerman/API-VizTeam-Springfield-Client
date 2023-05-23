@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit, } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MemberService } from '../shared/member.service';
 import { TeamsService } from '../shared/teams.service';
 import { JobsService } from '../shared/jobs.service';
@@ -15,6 +15,8 @@ import { JobsService } from '../shared/jobs.service';
 })
 export class AddMemberComponent implements OnInit {
 
+  error: boolean = false;
+
   jobs: any = [];
   teams: any = [];
   employees: any = [];
@@ -23,8 +25,8 @@ export class AddMemberComponent implements OnInit {
   employeeFormgroup = new FormGroup({
     first_name: new FormControl(''),
     last_name: new FormControl(''),
-    job: new FormControl(''),
-    team: new FormControl('')
+    job_id: new FormControl(''),
+    team_id: new FormControl('')
   });
 
 
@@ -42,7 +44,7 @@ export class AddMemberComponent implements OnInit {
     this.jobsService.fetchJobs().subscribe({
       next:(res:any)=>{
         console.log("Jobs Works", res)
-        this.jobs = res.payload.jobs
+        this.jobs = res.payload.job
       }
     })
 
@@ -57,10 +59,23 @@ export class AddMemberComponent implements OnInit {
   }
 
 
-  OnSubmit(){
 
+  onSubmit(){
+    
+    const newEmployee = this.employeeFormgroup.value;
+
+    this.memberService.createEmployee(newEmployee).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.dialogRef.close();
+      },
+      error: (errorRes) => {
+        console.error('An error occurred', errorRes);
+        this.error = true;
+      },
+    });
+  }
   }
 
 
 
-}
