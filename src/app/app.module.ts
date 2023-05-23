@@ -24,6 +24,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { AddTeamComponent } from './add-team/add-team.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 import { AddMemberComponent } from './add-member/add-member.component';
 import { MatSelectModule } from '@angular/material/select';
@@ -64,7 +65,7 @@ import { DeleteTeamComponent } from './delete-team/delete-team.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatSnackBarModule,
-
+    MatPaginatorModule,
     MatGridListModule,
 
     MatSelectModule,

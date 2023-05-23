@@ -107,10 +107,6 @@ export class HomeComponent implements OnInit {
     this.matDialog.open(AddMemberComponent, {
       width: '500px',
     });
-    this.http.get('https://picsum.photos/v2/list?page=2&limit=100').subscribe((res:any) =>
-    {
-      console.log(res);
-    })
   }
 
   // addMemberToTeam(team: any) {

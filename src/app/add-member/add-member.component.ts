@@ -2,9 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit, } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+
 import { MemberService } from '../shared/member.service';
 import { TeamsService } from '../shared/teams.service';
 import { JobsService } from '../shared/jobs.service';
+import { PageEvent } from '@angular/material/paginator';
 
 
 
@@ -18,6 +20,7 @@ export class AddMemberComponent implements OnInit {
   jobs: any = [];
   teams: any = [];
   employees: any = [];
+  picSum: any = [];
 
 
   employeeFormgroup = new FormGroup({
@@ -37,7 +40,10 @@ export class AddMemberComponent implements OnInit {
 
   ngOnInit(): void {
 
-
+    this.http.get('https://picsum.photos/v2/list?page=2&limit=100').subscribe((res:any) =>
+    {
+      console.log(res);
+    })
 
     this.jobsService.fetchJobs().subscribe({
       next:(res:any)=>{
