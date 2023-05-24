@@ -26,15 +26,16 @@
 
     <p>
       <mat-form-field >
-        <mat-select style="margin-right: 20px;;" placeholder="Title" formControlName="job" >
-          <mat-option [value]="job" *ngFor="let job of jobs; index as i">
+        <mat-select style="margin-right: 20px;;" placeholder="Title" formControlName="job_id" >
+          <mat-option [value]="job.id" *ngFor="let job of jobs; index as i">
             {{job.job_titles}}
           </mat-option>
         </mat-select>
       </mat-form-field>
+
       <mat-form-field >
-        <mat-select  style="margin-right: 20px;" placeholder="Team" formControlName="team" >
-          <mat-option [value]="team" *ngFor="let team of teams; index as i">
+        <mat-select  style="margin-right: 20px;" placeholder="Team" formControlName="team_id" >
+          <mat-option [value]="team.id" *ngFor="let team of teams; index as i">
             {{team.name}}
           </mat-option>
         </mat-select>
@@ -42,7 +43,7 @@
   </p>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button mat-button matDialogClose>Cancel</button>    <button type="submit"  [disabled]="!employeeFormgroup.valid" mat-button>Edit Team</button>
+    <button mat-button (click)="closeDialog()">Cancel</button>    <button type="submit"  [disabled]="!employeeFormgroup.valid" mat-button>Edit Team</button>
   </mat-dialog-actions>
 
 </form>

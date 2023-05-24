@@ -1,6 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { JobsService } from '../shared/jobs.service';
+import { TeamsService } from '../shared/teams.service';
 
 @Component({
   selector: 'app-edit-employee',
@@ -15,14 +17,39 @@ export class EditEmployeeComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<EditEmployeeComponent>
+    private dialogRef: MatDialogRef<EditEmployeeComponent>,
+    private jobService: JobsService,
+    private teamService: TeamsService
   ) {}
 
   ngOnInit(): void {
     this.employeeFormgroup = new FormGroup({
       first_name: new FormControl(this.data.first_name),
       last_name: new FormControl(this.data.last_name),
-      job: new FormControl(this.data.job),
+      job_id: new FormControl(this.data.job_id),
+      team_id: new FormControl(this.data.team_id),
+    });
+
+    this.jobService.fetchJobs().subscribe({
+      next: (res: any) => {
+        console.log('JOBS', res);
+        this.jobs = res.payload.job;
+      },
+      error: (error: any) => {
+        this.error = true;
+        // Handle error, such as displaying an error message
+      },
+    });
+
+    this.teamService.fetchTeams().subscribe({
+      next: (res: any) => {
+        console.log('TEAMS EDIT', res);
+        this.teams = res.payload.teams;
+      },
+      error: (error: any) => {
+        this.error = true;
+        // Handle error, such as displaying an error message
+      },
     });
 
     //this.teamService.editTeamSubject.subscribe((updatedTeam: any) => {
@@ -32,4 +59,8 @@ export class EditEmployeeComponent implements OnInit {
   }
 
   onSubmit() {}
+
+  closeDialog() {
+    this.dialogRef.close();
+  }
 }
