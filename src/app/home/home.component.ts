@@ -22,6 +22,8 @@ export class HomeComponent implements OnInit {
   panelOpenState = false;
   teamService: any;
 
+  selectedTeamIndex: number = -1
+
   // teamCount: number = this.displayTeams.reduce((count: number, team: any) => count + team.members.length, 0);
 
   constructor(
@@ -106,6 +108,7 @@ export class HomeComponent implements OnInit {
   onAddMember() {
     this.matDialog.open(AddMemberComponent, {
       width: '500px',
+      
     });
   }
 

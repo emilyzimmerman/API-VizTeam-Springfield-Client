@@ -7,12 +7,13 @@
         <div style="height: 350px; overflow-y: auto;">
           <mat-expansion-panel
             class="custom-expansion-panel"
-            (opened)="panelOpenState = true"
-            (closed)="panelOpenState = false"
+            (opened)="panelOpenState = true; selectedTeamIndex = i;"
+            (closed)="panelOpenState = false; selectedTeamIndex = -1;"
+            [expanded]="selectedTeamIndex === i"
             style="margin-top: 2%;"
-            (click)="selectedTeam = team"
+            (click)="selectedTeam = team; selectedTeamIndex = i"
             [class.selected]="selectedTeam == team"
-            *ngFor="let team of displayTeams">
+            *ngFor="let team of displayTeams; let i = index">
             <mat-expansion-panel-header>
               <mat-panel-title>{{team.name}}</mat-panel-title>
             </mat-expansion-panel-header>
@@ -36,10 +37,13 @@
         </div>
             <mat-action-row>
               <span class="team-count">{{ team.employees.length }}/12</span>
-              <button mat-icon-button matTooltip="Add Member" (click)="onAddMember()">
+              <div *ngIf="selectedTeam">
+                <button mat-icon-button matTooltip="Add Member" (click)="onAddMember()">
 
-                <mat-icon class="person-add-icon">person_add</mat-icon>
-              </button>
+                  <mat-icon class="person-add-icon">person_add</mat-icon>
+                </button>
+              </div>
+
             </mat-action-row>
           </mat-expansion-panel>
         </div>

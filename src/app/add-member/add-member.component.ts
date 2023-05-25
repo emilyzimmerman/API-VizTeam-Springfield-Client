@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, Inject, OnInit, ViewChild, } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
-
 import { MemberService } from '../shared/member.service';
 import { TeamsService } from '../shared/teams.service';
 import { JobsService } from '../shared/jobs.service';
@@ -18,6 +17,8 @@ import { ImageData } from '../shared/models/image_data.interface';
 })
 export class AddMemberComponent implements OnInit {
 
+  error: boolean = false;
+
   jobs: any = [];
   teams: any = [];
   employees: any = [];
@@ -30,8 +31,8 @@ export class AddMemberComponent implements OnInit {
   employeeFormgroup = new FormGroup({
     first_name: new FormControl(''),
     last_name: new FormControl(''),
-    job: new FormControl(''),
-    team: new FormControl('')
+    job_id: new FormControl(''),
+    team_id: new FormControl('')
   });
 
 
@@ -94,10 +95,23 @@ export class AddMemberComponent implements OnInit {
     this.selectedImageIndex = index;
   }
 
-  OnSubmit(){
 
+  onSubmit(){
+
+    const newEmployee = this.employeeFormgroup.value;
+
+    this.memberService.createEmployee(newEmployee).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.dialogRef.close();
+      },
+      error: (errorRes) => {
+        console.error('An error occurred', errorRes);
+        this.error = true;
+      },
+    });
+  }
   }
 
 
 
-}

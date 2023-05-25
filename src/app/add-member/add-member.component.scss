@@ -1,3 +1,7 @@
+.custom-mat-form-field {
+  margin-bottom: 20px; /* Adjust the value to set the desired gap */
+}
+
 .image_container{
   display: flex;
   overflow-x: auto;
@@ -17,4 +21,8 @@
 
 .selected{
   border-bottom: 3px solid #ff4e00;
+}
+
+.custom-mat-form-field {
+  margin-bottom: 20px; /* Adjust the value to set the desired gap */
 }
