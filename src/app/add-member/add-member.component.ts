@@ -1,12 +1,13 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Inject, OnInit, } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild, } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { MemberService } from '../shared/member.service';
 import { TeamsService } from '../shared/teams.service';
 import { JobsService } from '../shared/jobs.service';
-import { PageEvent } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { ImageData } from '../shared/models/image_data.interface';
 
 
 
@@ -20,8 +21,10 @@ export class AddMemberComponent implements OnInit {
   jobs: any = [];
   teams: any = [];
   employees: any = [];
-  picSum: any = [];
+  imgArray: ImageData[] = [];
+  pageImages: ImageData[] = [];
 
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   employeeFormgroup = new FormGroup({
     first_name: new FormControl(''),
@@ -31,24 +34,22 @@ export class AddMemberComponent implements OnInit {
   });
 
 
-
-
-
-
-
   constructor(private memberService: MemberService, private dialogRef: MatDialogRef<AddMemberComponent>, @Inject(MAT_DIALOG_DATA) public data: any, private teamsService: TeamsService, private jobsService: JobsService, private http:HttpClient) { }
+
 
   ngOnInit(): void {
 
-    this.http.get('https://picsum.photos/v2/list?page=2&limit=100').subscribe((res:any) =>
-    {
-      console.log(res);
-    })
+    // this.http.get<ImageData[]>('https://picsum.photos/v2/list?limit=100').subscribe((res: ImageData[]) =>
+    // {
+    //   // console.log(res);
+    //   this.imgArray = res;
+    //   console.log(this.imgArray);
+    // })
 
     this.jobsService.fetchJobs().subscribe({
       next:(res:any)=>{
         console.log("Jobs Works", res)
-        this.jobs = res.payload.jobs
+        this.jobs = res.payload.job
       }
     })
 
@@ -62,6 +63,30 @@ export class AddMemberComponent implements OnInit {
 
   }
 
+  fetchImages(): void{
+    this.http.get<ImageData[]>('https://picsum.photos/v2/list?limit=100').subscribe((res:ImageData[])=>{
+      this.imgArray = res;
+      console.log(this.imgArray);
+      this.updatePageImages();
+    });
+  }
+
+  updatePageImages(): void{
+    const pageIndex = this.paginator.pageIndex;
+    const pageSize = this.paginator.pageSize;
+    const startIndex = pageIndex * pageSize;
+    const endIndex = startIndex + pageSize;
+
+    this.pageImages = this.imgArray.slice(startIndex, endIndex);
+  }
+
+  ngAfterViewInit(): void{
+    this.fetchImages();
+  }
+
+  handlePageEvent(event: PageEvent): void{
+    this.updatePageImages();
+  }
 
   OnSubmit(){
 

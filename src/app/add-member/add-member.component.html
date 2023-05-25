@@ -1,7 +1,14 @@
 <form [formGroup]="employeeFormgroup" >
 
-  <
-  <mat-paginator pageSize="5"></mat-paginator>
+  <div class="image-containter">
+    <mat-grid-list cols="5">
+      <mat-grid-tile *ngFor="let pic of pageImages; index as i">
+        <img src="{{pic.download_url}}" alt="Image{{i}}">
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-paginator (page)="handlePageEvent($event)" [pageSize]="5" [length]="imgArray.length"></mat-paginator>
+  </div>
+
 
   <mat-dialog-content>
     <h4>Add Member Dialog</h4>
