@@ -2,26 +2,21 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import { environment } from 'src/environments/environment';
-import { Subject } from 'rxjs';
+import { Subject, tap } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MemberService {
   createEmployeeSubject = new Subject<any>();
+  editEmployeeSubject = new Subject<any>();
 
-
-
-
-
-  constructor(private http:HttpClient, private authService: AuthService) { }
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   token = this.authService.getToken();
 
-  baseApi = environment.backendUrl
-
   fetchEmployees() {
-    return this.http.get(this.baseApi + '/api/v1/employees', {
+    return this.http.get('http://localhost:3000/api/v1/employees/', {
       headers: {
         Authorization: `Bearer ${this.token.value}`,
       },
@@ -29,13 +24,29 @@ export class MemberService {
   }
 
   fetchJobs() {
-    return this.http.get(this.baseApi + '/api/v1/jobs', {
+    return this.http.get('http://localhost:3000/api/v1/jobs/', {
       headers: {
         Authorization: `Bearer ${this.token.value}`,
       },
     });
   }
 
+  onUpdateMember(updatedMember, id) {
+    const token = this.authService.getToken();
+    return this.http
+      .put(`http://localhost:3000/api/v1/employees/${id}`, updatedMember, {
+        headers: {
+          Authorization: `Bearer ${token.value}`,
+        },
+      })
+      .pipe(
+        tap((res: any) => {
+          if (res.success) {
+            this.editEmployeeSubject.next(res.payload.employee);
+          }
+        })
+      );
+  }
 
   // createEmployee(employee) {
   //   const token = this.authService.getToken();
@@ -55,6 +66,4 @@ export class MemberService {
   //       })
   //     );
   // }
-
-
 }

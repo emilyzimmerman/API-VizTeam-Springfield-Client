@@ -3,6 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { JobsService } from '../shared/jobs.service';
 import { TeamsService } from '../shared/teams.service';
+import { MemberService } from '../shared/member.service';
 
 @Component({
   selector: 'app-edit-employee',
@@ -19,7 +20,8 @@ export class EditEmployeeComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<EditEmployeeComponent>,
     private jobService: JobsService,
-    private teamService: TeamsService
+    private teamService: TeamsService,
+    private memberService: MemberService
   ) {}
 
   ngOnInit(): void {
@@ -28,6 +30,7 @@ export class EditEmployeeComponent implements OnInit {
       last_name: new FormControl(this.data.last_name),
       job_id: new FormControl(this.data.job_id),
       team_id: new FormControl(this.data.team_id),
+      pictureUrl: new FormControl(this.data.pictureUrl),
     });
 
     this.jobService.fetchJobs().subscribe({
@@ -58,7 +61,16 @@ export class EditEmployeeComponent implements OnInit {
     // });
   }
 
-  onSubmit() {}
+  onSubmit() {
+    const editedEmployee = this.employeeFormgroup.value;
+    console.log(this.data.id);
+    this.memberService.onUpdateMember(editedEmployee, this.data.id).subscribe({
+      next: (res: any) => {
+        this.memberService.editEmployeeSubject.next(res.payload.team);
+        this.dialogRef.close();
+      },
+    });
+  }
 
   closeDialog() {
     this.dialogRef.close();

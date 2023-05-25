@@ -145,6 +145,7 @@ export class HomeComponent implements OnInit {
         last_name: employee.last_name,
         job: employee.job.job_titles,
         team: employee.team.name,
+        pictureUrl: employee.pictureUrl,
         id: employee.id,
       },
     });
