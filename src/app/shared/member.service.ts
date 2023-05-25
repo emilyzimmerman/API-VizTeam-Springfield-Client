@@ -48,6 +48,15 @@ export class MemberService {
       );
   }
 
+  deleteMember(id) {
+    const token = this.authService.getToken();
+    return this.http.delete(`http://localhost:3000/api/v1/employees/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token.value}`,
+      },
+    });
+  }
+
   // createEmployee(employee) {
   //   const token = this.authService.getToken();
 

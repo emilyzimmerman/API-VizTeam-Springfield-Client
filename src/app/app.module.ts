@@ -32,6 +32,7 @@ import { TeamDetailComponent } from './team-detail/team-detail.component';
 import { EditTeamComponent } from './edit-team/edit-team.component';
 import { DeleteTeamComponent } from './delete-team/delete-team.component';
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
+import { DeleteEmployeeComponent } from './delete-employee/delete-employee.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { EditEmployeeComponent } from './edit-employee/edit-employee.component';
     DeleteTeamComponent,
     AddMemberComponent,
     EditEmployeeComponent,
+    DeleteEmployeeComponent,
   ],
 
   imports: [
