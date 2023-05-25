@@ -44,3 +44,19 @@ mat-action-row
   justify-content: flex-end;
   align-items: center;
  }
+
+
+ .employee-details-container {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  color:  grey;
+}
+
+.employee-picture {
+  margin-right: 20px;
+}
+
+.employee-details {
+  flex: 1;
+}
