@@ -31,13 +31,13 @@
         class="form-control"
         name="pictureUrl"
         formControlName="pictureUrl"
-
+        required
         >
     </mat-form-field>
 
     <p>
       <mat-form-field >
-        <mat-select style="margin-right: 20px;;" placeholder="Title" formControlName="job_id" >
+        <mat-select style="margin-right: 20px;;" placeholder="Title" formControlName="job_id" required>
           <mat-option [value]="job.id" *ngFor="let job of jobs; index as i">
             {{job.job_titles}}
           </mat-option>
@@ -45,7 +45,7 @@
       </mat-form-field>
 
       <mat-form-field >
-        <mat-select  style="margin-right: 20px;" placeholder="Team" formControlName="team_id" >
+        <mat-select  style="margin-right: 20px;" placeholder="Team" formControlName="team_id" required>
           <mat-option [value]="team.id" *ngFor="let team of teams; index as i">
             {{team.name}}
           </mat-option>
