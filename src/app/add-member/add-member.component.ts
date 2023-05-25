@@ -23,6 +23,7 @@ export class AddMemberComponent implements OnInit {
   employees: any = [];
   imgArray: ImageData[] = [];
   pageImages: ImageData[] = [];
+  selectedImageIndex: number | null = null;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -85,7 +86,12 @@ export class AddMemberComponent implements OnInit {
   }
 
   handlePageEvent(event: PageEvent): void{
+    this.selectedImageIndex = null;
     this.updatePageImages();
+  }
+
+  selectImage(index: number): void{
+    this.selectedImageIndex = index;
   }
 
   OnSubmit(){
