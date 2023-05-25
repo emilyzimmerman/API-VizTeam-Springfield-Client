@@ -196,4 +196,14 @@ export class HomeComponent implements OnInit {
     // Reset the selected employee if it was deleted
     this.selectedEmployee = null;
   }
+
+  //Drag the image code
+  onDragStart(event: DragEvent, employee: any) {
+    // Set the data payload of the drag event
+    event.dataTransfer?.setData('text/plain', employee.id);
+  }
+
+  onDragEnd(event: DragEvent) {
+    // Perform any cleanup or additional logic after the drag operation ends
+  }
 }

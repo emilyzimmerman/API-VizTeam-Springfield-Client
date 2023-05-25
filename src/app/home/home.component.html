@@ -30,7 +30,10 @@
               matTooltipShowDelay="500"
               matTooltipHideDelay="0"
               (click)="selectedEmployee = employee"
-              [class.selected]="selectedEmployee == employee">
+              [class.selected]="selectedEmployee == employee"
+              draggable="true"
+              (dragstart)="onDragStart($event, employee)"
+              (dragend)="onDragEnd($event)">
           </mat-grid-tile>
           </mat-grid-list>
         </div>
