@@ -9,6 +9,7 @@ import { DeleteTeamComponent } from '../delete-team/delete-team.component';
 import { AddMemberComponent } from '../add-member/add-member.component';
 import { EditEmployeeComponent } from '../edit-employee/edit-employee.component';
 import { HttpClient } from '@angular/common/http';
+import { MemberService } from '../shared/member.service';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +29,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private teamsService: TeamsService,
     private matDialog: MatDialog,
-    private http: HttpClient
+    private http: HttpClient,
+    private memberService: MemberService
   ) {}
 
   ngOnInit(): void {
@@ -56,7 +58,22 @@ export class HomeComponent implements OnInit {
       }
     });
 
-    console.log('DISPLAY TEAM:', this.displayTeams);
+    // ...
+
+    // subscribe to update members
+    this.memberService.editEmployeeSubject.subscribe((updatedMember: any) => {
+      for (const team of this.displayTeams) {
+        const index = team.employees.findIndex(
+          (employee: any) => employee.id === updatedMember.id
+        );
+        if (index !== -1) {
+          team.employees[index] = updatedMember;
+          break; // Exit the loop since we found and updated the member
+        }
+      }
+    });
+
+    // ...
   }
 
   onAddTeam() {

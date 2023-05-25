@@ -55,10 +55,10 @@ export class EditEmployeeComponent implements OnInit {
       },
     });
 
-    //this.teamService.editTeamSubject.subscribe((updatedTeam: any) => {
-    // Handle the updated team, such as updating the displayTeams array or refreshing the team list
-    //console.log('Team updated:', updatedTeam);
-    // });
+    this.memberService.editEmployeeSubject.subscribe((updatedMember: any) => {
+      // Handle the updated team, such as updating the displayTeams array or refreshing the team list
+      console.log('Member updated:', updatedMember);
+    });
   }
 
   onSubmit() {
@@ -66,7 +66,7 @@ export class EditEmployeeComponent implements OnInit {
     console.log(this.data.id);
     this.memberService.onUpdateMember(editedEmployee, this.data.id).subscribe({
       next: (res: any) => {
-        this.memberService.editEmployeeSubject.next(res.payload.team);
+        this.memberService.editEmployeeSubject.next(res.payload.employee);
         this.dialogRef.close();
       },
     });
