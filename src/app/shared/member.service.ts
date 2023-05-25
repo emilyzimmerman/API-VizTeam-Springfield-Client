@@ -75,4 +75,22 @@ export class MemberService {
   //       })
   //     );
   // }
+
+  createEmployee(employee) {
+    const token = this.authService.getToken();
+
+    return this.http
+      .post('http://localhost:3000/api/v1/employees/', employee, {
+        headers: {
+          Authorization: `Bearer ${token.value}`,
+        },
+      })
+      .pipe(
+        tap((res: any) => {
+          if (res.success) {
+            this.createEmployeeSubject.next(res.payload.employee);
+          }
+        })
+      );
+  }
 }
