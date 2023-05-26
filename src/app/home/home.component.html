@@ -11,10 +11,10 @@
             (closed)="panelOpenState = false; selectedTeamIndex = -1;"
             [expanded]="selectedTeamIndex === i"
             style="margin-top: 2%;"
-            (click)="selectedTeam = team; selectedTeamIndex = i"
+            (click)="selectedTeam = team; selectedTeamIndex = i;"
             [class.selected]="selectedTeam == team"
             *ngFor="let team of displayTeams; let i = index">
-            <mat-expansion-panel-header>
+            <mat-expansion-panel-header (click)="selectedEmployee = null">
               <mat-panel-title>{{team.name}}</mat-panel-title>
             </mat-expansion-panel-header>
 <!-- List members of team in expansion panels w/ default avatar pic -->
@@ -23,18 +23,19 @@
           <mat-grid-list cols="12" rowHeight="80" gutterSize="5px">
           <mat-grid-tile *ngFor="let employee of team.employees">
             <img
-              src="{{ employee.pictureUrl || 'default-picture.png' }}"
-              alt="Member Picture"
-              style="width: 65px; height: 65px; object-fit: cover; margin: 5px;"
-              matTooltip="{{employee.first_name}} {{employee.last_name}}"
-              matTooltipPosition="above"
-              matTooltipShowDelay="500"
-              matTooltipHideDelay="0"
-              (click)="selectedEmployee = employee"
-              [class.selected]="selectedEmployee == employee"
-              draggable="true"
-              (dragstart)="onDragStart($event, employee)"
-              (dragend)="onDragEnd($event)">
+  src="{{ employee.pictureUrl || 'default-picture.png' }}"
+  alt="Member Picture"
+  style="width: 65px; height: 65px; object-fit: cover; margin: 5px;"
+  matTooltip="{{employee.first_name}} {{employee.last_name}}"
+  matTooltipPosition="above"
+  matTooltipShowDelay="500"
+  matTooltipHideDelay="0"
+  (click)="selectEmployee(employee)"
+  [class.selected]="selectedEmployee == employee"
+  draggable="true"
+  (dragstart)="onDragStart($event, employee)"
+  (dragend)="onDragEnd($event)"
+>
           </mat-grid-tile>
           </mat-grid-list>
         </div>
@@ -121,7 +122,6 @@
         </button>
       </div>
     </mat-action-row>
-
   </mat-card>
 
   <!--Show if there are no teams-->
@@ -131,4 +131,3 @@
     </div>
   </mat-card>
 </div>
-

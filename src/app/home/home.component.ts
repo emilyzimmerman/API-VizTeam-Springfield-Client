@@ -208,4 +208,8 @@ export class HomeComponent implements OnInit {
   onDragEnd(event: DragEvent) {
     // Perform any cleanup or additional logic after the drag operation ends
   }
+
+  selectEmployee(employee: any) {
+    this.selectedEmployee = employee;
+  }
 }
