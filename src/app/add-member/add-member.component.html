@@ -2,21 +2,21 @@
 
   <mat-dialog-content>
 
-    <mat-form-field>
-      <input matInput placeholder="Image Url" type="text" formControlName="pictureUrl">
-      <div class="image-containter">
-        <mat-grid-list cols="5">
-          <mat-grid-tile *ngFor="let pic of pageImages; index as i"
-            [ngStyle]="{'opacity': (selectedImageIndex === i ? 1: 0.5)}"
-            [ngClass]="{'selected': selectedImageIndex === i}"
-            (click)="selectImage(i)">
-            <!-- <img *ngIf="selectedImageIndex === null && i === 0" src="/src/assets/images/default-picture.png"> -->
-            <img *ngIf="selectedImageIndex !== null || i !== 0" src="{{pic.download_url}}" alt="Image{{i}}">
-          </mat-grid-tile>
-        </mat-grid-list>
-        <mat-paginator (page)="handlePageEvent($event)" [pageSize]="5" [length]="imgArray.length"></mat-paginator>
-      </div>
-    </mat-form-field>
+    <div class="image-containter">
+      <mat-grid-list cols="5">
+        <mat-grid-tile *ngFor="let pic of pageImages; index as i"
+        [ngStyle]="{'opacity': (selectedImageIndex === i ? 1: 0.5)}"
+        [ngClass]="{'selected': selectedImageIndex === i}"
+        (click)="selectImage(i)">
+        <!-- <img *ngIf="selectedImageIndex === null && i === 0" src="/src/assets/images/default-picture.png"> -->
+        <img *ngIf="selectedImageIndex !== null || i !== 0" src="{{pic.download_url}}" alt="Image{{i}}">
+      </mat-grid-tile>
+    </mat-grid-list>
+    <mat-paginator (page)="handlePageEvent($event)" [pageSize]="5" [length]="imgArray.length"></mat-paginator>
+  </div>
+  <mat-form-field class="input-field">
+    <input matInput placeholder="Image Url" type="text" formControlName="pictureUrl" [value]="selectedImageUrl">
+  </mat-form-field>
 
 
     <h4>Add Member Dialog</h4>
