@@ -25,6 +25,7 @@ export class AddMemberComponent implements OnInit {
   imgArray: ImageData[] = [];
   pageImages: ImageData[] = [];
   selectedImageIndex: number | null = null;
+  selectedImageUrl: string | null = null;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -32,7 +33,8 @@ export class AddMemberComponent implements OnInit {
     first_name: new FormControl(''),
     last_name: new FormControl(''),
     job_id: new FormControl(''),
-    team_id: new FormControl('')
+    team_id: new FormControl(''),
+    pictureUrl: new FormControl(''),
   });
 
 
@@ -93,12 +95,14 @@ export class AddMemberComponent implements OnInit {
 
   selectImage(index: number): void{
     this.selectedImageIndex = index;
+    this.selectedImageUrl = this.pageImages[index].download_url;
   }
 
 
   onSubmit(){
 
     const newEmployee = this.employeeFormgroup.value;
+    newEmployee.pictureUrl = this.selectedImageUrl;
 
     this.memberService.createEmployee(newEmployee).subscribe({
       next: (res: any) => {
