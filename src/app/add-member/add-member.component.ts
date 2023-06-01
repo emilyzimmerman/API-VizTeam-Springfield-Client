@@ -24,7 +24,7 @@ export class AddMemberComponent implements OnInit {
   employees: any = [];
   imgArray: ImageData[] = [];
   pageImages: ImageData[] = [];
-  selectedImageIndex: number | null = null;
+  selectedImageIndex: number;
   selectedImageUrl: string | null = '/src/assets/images/default-picture.png';
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
