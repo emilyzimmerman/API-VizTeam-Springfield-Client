@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from './auth/auth.service';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -9,13 +8,14 @@ import { environment } from 'src/environments/environment';
 })
 export class AppComponent implements OnInit {
   loggedIn = false;
-  constructor(private authService: AuthService) {
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit(): void {
     this.authService.loggedInSubject.subscribe((loggedIn: boolean) => {
       this.loggedIn = loggedIn;
     });
-  }
 
-  ngOnInit(): void {
     this.authService.autoSignIn();
   }
 }

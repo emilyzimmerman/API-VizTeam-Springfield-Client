@@ -11,6 +11,8 @@ import { EditEmployeeComponent } from '../edit-employee/edit-employee.component'
 import { HttpClient } from '@angular/common/http';
 import { MemberService } from '../shared/member.service';
 import { DeleteEmployeeComponent } from '../delete-employee/delete-employee.component';
+import { User } from '../shared/models/user.model';
+import { UserService } from '../auth/user.service';
 
 @Component({
   selector: 'app-home',
@@ -18,6 +20,7 @@ import { DeleteEmployeeComponent } from '../delete-employee/delete-employee.comp
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  currentUser: User = null;
   selectedTeam: any;
   selectedEmployee: any;
   displayTeams: any = [];
@@ -33,10 +36,15 @@ export class HomeComponent implements OnInit {
     private teamsService: TeamsService,
     private matDialog: MatDialog,
     private http: HttpClient,
-    private memberService: MemberService
+    private memberService: MemberService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
+    this.userService.currentUserSubject.subscribe((user: User) => {
+      this.currentUser = user;
+    });
+
     this.teamsService.fetchTeams().subscribe((res: any) => {
       console.log('RES:', res.payload);
       if (res.success) {
